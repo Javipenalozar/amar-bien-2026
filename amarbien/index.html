@@ -158,38 +158,31 @@
       background: radial-gradient(ellipse at 60% 40%, #2A0000 0%, #060404 65%);
     }
 
-    /* Corazón de fuego animado */
+    /* Poster como fondo derecho */
     .fire-heart {
       position: absolute;
-      right: -5%;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 55%;
-      max-width: 580px;
+      right: 0;
+      top: 0;
+      width: 52%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
       opacity: 0;
-      animation: heartReveal 2s ease forwards 0.5s;
+      animation: heartReveal 1.5s ease forwards 0.3s;
+      mask-image: linear-gradient(to left, rgba(0,0,0,0.95) 40%, rgba(0,0,0,0) 100%);
+      -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,0.95) 40%, rgba(0,0,0,0) 100%);
     }
     @keyframes heartReveal {
-      0%   { opacity: 0; transform: translateY(-50%) scale(0.9); filter: blur(20px); }
-      100% { opacity: 1; transform: translateY(-50%) scale(1); filter: blur(0); }
+      0%   { opacity: 0; filter: blur(10px); }
+      100% { opacity: 1; filter: blur(0); }
     }
 
-    /* Pulso del corazón */
     .heart-glow {
       position: absolute;
-      right: 5%;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 45%;
-      max-width: 500px;
-      height: 500px;
-      border-radius: 50%;
-      background: radial-gradient(ellipse, rgba(180,40,10,0.3) 0%, transparent 70%);
-      animation: heartPulse 3s ease-in-out infinite;
-    }
-    @keyframes heartPulse {
-      0%,100% { transform: translateY(-50%) scale(1); opacity: 0.6; }
-      50%      { transform: translateY(-50%) scale(1.1); opacity: 1; }
+      right: 0; top: 0;
+      width: 55%; height: 100%;
+      background: radial-gradient(ellipse at 80% 50%, rgba(139,0,0,0.25) 0%, transparent 70%);
+      pointer-events: none;
     }
 
     /* Grietas en hero */
@@ -220,7 +213,7 @@
       position: relative;
       z-index: 10;
       padding: 120px 48px 80px;
-      max-width: 680px;
+      max-width: 700px;
       width: 100%;
     }
 
@@ -268,7 +261,7 @@
     }
     .manifesto-word {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(3.5rem, 9vw, 6.5rem);
+      font-size: clamp(2.5rem, 4.5vw, 5rem);
       font-weight: 900;
       line-height: 0.9;
       display: block;
@@ -561,7 +554,7 @@
     }
     .m-word {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(3.5rem, 10vw, 7rem);
+      font-size: clamp(3rem, 7vw, 6rem);
       font-weight: 900;
       line-height: 0.85;
       background: linear-gradient(135deg, var(--oro) 0%, var(--oro-brillo) 40%, #A07830 100%);
@@ -1174,63 +1167,9 @@
 <!-- ══════════ HERO ══════════ -->
 <section id="hero">
 
-  <!-- Corazón de fuego SVG -->
+  <!-- Poster oficial como imagen derecha del hero -->
   <div class="heart-glow"></div>
-  <svg class="fire-heart" viewBox="0 0 500 520" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <radialGradient id="fg1" cx="50%" cy="40%" r="60%">
-        <stop offset="0%" stop-color="#FFB030" stop-opacity="0.9"/>
-        <stop offset="35%" stop-color="#D04010" stop-opacity="0.8"/>
-        <stop offset="70%" stop-color="#8B0000" stop-opacity="0.9"/>
-        <stop offset="100%" stop-color="#3D0000" stop-opacity="1"/>
-      </radialGradient>
-      <radialGradient id="fg2" cx="40%" cy="35%" r="50%">
-        <stop offset="0%" stop-color="#FFC840" stop-opacity="0.6"/>
-        <stop offset="100%" stop-color="#8B0000" stop-opacity="0"/>
-      </radialGradient>
-      <filter id="glow">
-        <feGaussianBlur stdDeviation="8" result="blur"/>
-        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-      </filter>
-      <filter id="glow2">
-        <feGaussianBlur stdDeviation="3" result="blur"/>
-        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-      </filter>
-    </defs>
-
-    <!-- Cuerpo del corazón (textura de pinceladas) -->
-    <path d="M250,460 C180,420 60,340 30,240 C10,175 20,90 80,60 C120,40 165,50 200,80 C215,92 230,110 250,130 C270,110 285,92 300,80 C335,50 380,40 420,60 C480,90 490,175 470,240 C440,340 320,420 250,460Z" fill="url(#fg1)" filter="url(#glow)"/>
-
-    <!-- Venas doradas (grietas de luz) -->
-    <g fill="none" stroke="#C9A84C" stroke-width="1.5" filter="url(#glow2)" opacity="0.7">
-      <path d="M250,130 L240,200 L220,260 L200,320 L210,380 L250,440"/>
-      <path d="M250,130 L260,200 L280,260 L300,320 L290,380 L250,440"/>
-      <path d="M200,180 L170,220 L140,280 L120,340"/>
-      <path d="M300,180 L330,220 L360,280 L380,340"/>
-      <path d="M160,150 L140,200 L110,250"/>
-      <path d="M340,150 L360,200 L390,250"/>
-      <path d="M220,200 L200,240 L180,300"/>
-      <path d="M280,200 L300,240 L320,300"/>
-      <path d="M240,280 L220,320 L230,360"/>
-      <path d="M260,280 L280,320 L270,360"/>
-    </g>
-
-    <!-- Venas brillantes -->
-    <g fill="none" stroke="#FFE080" stroke-width="0.5" opacity="0.5">
-      <path d="M250,130 L235,195 L215,255 L195,315"/>
-      <path d="M250,130 L265,195 L285,255 L305,315"/>
-      <path d="M195,175 L165,215 L135,275"/>
-      <path d="M305,175 L335,215 L365,275"/>
-    </g>
-
-    <!-- Brillo superior -->
-    <ellipse cx="200" cy="150" rx="40" ry="25" fill="url(#fg2)" opacity="0.5"/>
-    <ellipse cx="300" cy="140" rx="35" ry="20" fill="url(#fg2)" opacity="0.4"/>
-
-    <!-- Punto de luz en la base -->
-    <circle cx="250" cy="455" r="8" fill="#FFD060" opacity="0.8" filter="url(#glow)"/>
-    <circle cx="250" cy="455" r="3" fill="#fff" opacity="0.9"/>
-  </svg>
+  <img src="poster.png" class="fire-heart" alt="Amar Bien 2026">
 
   <!-- Grietas hero -->
   <svg class="hero-cracks" viewBox="0 0 800 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
