@@ -623,42 +623,94 @@
     #incluye {
       background: var(--gris-oscuro);
     }
-    .incluye-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1px;
-      margin-top: 48px;
-      background: rgba(201,168,76,0.1);
-    }
-    .i-card {
-      background: var(--gris-oscuro);
-      padding: 36px 28px;
-      transition: background 0.3s;
+
+    /* Lista de items con checkmark */
+    .il-item {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(201,168,76,0.1);
       opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.5s ease, transform 0.5s ease, background 0.3s;
+      transform: translateY(16px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
     }
-    .i-card.visible { opacity: 1; transform: translateY(0); }
-    .i-card:hover { background: rgba(201,168,76,0.04); }
-    .i-card .i-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
-      color: rgba(201,168,76,0.5);
-      line-height: 1;
-      margin-bottom: 16px;
+    .il-item.visible { opacity: 1; transform: translateY(0); }
+    .il-item:last-child { border-bottom: none; }
+    .il-check {
+      color: var(--oro);
+      font-size: 1rem;
+      margin-top: 3px;
+      flex-shrink: 0;
     }
-    .i-card h3 {
+    .il-item strong {
       font-family: 'Playfair Display', serif;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       color: var(--blanco);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .il-item p {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      color: #9A8A7A;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Caja de valor/precio */
+    .incluye-valor {
+      background: linear-gradient(135deg, rgba(201,168,76,0.08) 0%, rgba(122,0,0,0.08) 100%);
+      border: 1px solid rgba(201,168,76,0.25);
+      border-radius: 4px;
+      padding: 32px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      max-width: 720px;
+      margin: 0 auto;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .incluye-valor.visible { opacity: 1; transform: translateY(0); }
+    .iv-tag {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      color: var(--oro);
+      text-transform: uppercase;
       margin-bottom: 10px;
     }
-    .i-card p {
-      font-size: 0.9rem;
-      color: #9A8A7A;
-      line-height: 1.7;
+    .iv-precio-label {
       font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      color: #6A5A4A;
+      margin-bottom: 4px;
     }
+    .iv-precio {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--oro);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .iv-precio-tachado {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      color: #5A4A3A;
+      text-decoration: line-through;
+    }
+
+    /* Legado del grid (mantener por si acaso) */
+    .i-card {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .i-card.visible { opacity: 1; transform: translateY(0); }
 
     /* ── SECCIÓN: SOBRE JAVI ── */
     #sobre-javi {
@@ -1126,6 +1178,8 @@
 
       /* Incluye grid */
       .incluye-grid { grid-template-columns: 1fr; }
+      .incluye-valor { flex-direction: column; align-items: flex-start; padding: 24px; gap: 20px; }
+      .incluye-valor .btn-primary { width: 100%; justify-content: center; }
 
       /* Sobre Javi — mostrar foto en mobile */
       .javi-grid { grid-template-columns: 1fr; gap: 32px; }
@@ -1348,39 +1402,69 @@
 <!-- ══════════ QUÉ INCLUYE ══════════ -->
 <section id="incluye">
   <div class="container-wide">
-    <div class="s-label">Lo que vivirás</div>
-    <h2 class="s-title">Todo lo que incluye</h2>
+    <div class="s-label">Tu inversión incluye</div>
+    <h2 class="s-title">Todo lo que recibes el <em style="font-style:italic;color:var(--oro)">7 de Noviembre</em></h2>
     <div class="gold-line"></div>
-    <div class="incluye-grid">
-      <div class="i-card" data-card>
-        <div class="i-num">01</div>
-        <h3>3 conferencistas expertos</h3>
-        <p>Especialistas en salud emocional, apego, neurociencia y relaciones conscientes.</p>
+
+    <!-- Lista principal de checkmarks -->
+    <div class="incluye-lista" style="max-width:720px;margin:0 auto 56px;">
+      <div class="il-item" data-card>
+        <span class="il-check">✦</span>
+        <div>
+          <strong>3 conferencistas expertos en vivo</strong>
+          <p>Especialistas en salud emocional, apego, neurociencia y relaciones conscientes — todo en un solo día.</p>
+        </div>
       </div>
-      <div class="i-card" data-card>
-        <div class="i-num">02</div>
-        <h3>Herramientas prácticas</h3>
-        <p>Ejercicios y metodologías que aplicas desde el primer momento, no después.</p>
+      <div class="il-item" data-card>
+        <span class="il-check">✦</span>
+        <div>
+          <strong>Herramientas que usas ese mismo día</strong>
+          <p>Ejercicios prácticos y metodologías que aplicas en el momento, no "cuando llegues a casa".</p>
+        </div>
       </div>
-      <div class="i-card" data-card>
-        <div class="i-num">03</div>
-        <h3>Espacios de reflexión</h3>
-        <p>Dinámicas de grupo y momentos de introspección con acompañamiento profesional.</p>
+      <div class="il-item" data-card>
+        <span class="il-check">✦</span>
+        <div>
+          <strong>Coaches y psicólogos presentes todo el día</strong>
+          <p>Acompañamiento personalizado durante cada dinámica para que tu proceso sea profundo y seguro.</p>
+        </div>
       </div>
-      <div class="i-card" data-card>
-        <div class="i-num">04</div>
-        <h3>Kit de materiales</h3>
-        <p>Cuaderno de trabajo con herramientas y referencias académicas para seguir el proceso.</p>
+      <div class="il-item" data-card>
+        <span class="il-check">✦</span>
+        <div>
+          <strong>Kit de materiales físico</strong>
+          <p>Cuaderno de trabajo con guías, reflexiones y referencias para continuar el proceso después del evento.</p>
+        </div>
       </div>
-      <div class="i-card" data-card>
-        <div class="i-num">05</div>
-        <h3>Coaches y psicólogos</h3>
-        <p>Profesionales presentes todo el día para acompañar tu proceso de manera personalizada.</p>
+      <div class="il-item" data-card>
+        <span class="il-check">✦</span>
+        <div>
+          <strong>Espacios de introspección guiada</strong>
+          <p>Dinámicas de grupo diseñadas para movilizar patrones relacionales desde adentro, no desde la teoría.</p>
+        </div>
       </div>
-      <div class="i-card" data-card>
-        <div class="i-num">06</div>
-        <h3>Cóctel de cierre</h3>
-        <p>Espacio de celebración y networking al finalizar la jornada de transformación.</p>
+      <div class="il-item" data-card>
+        <span class="il-check">✦</span>
+        <div>
+          <strong>Cóctel de cierre y networking</strong>
+          <p>Celebra con otras personas que eligieron transformarse. Un espacio para conectar desde otro lugar.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Caja resumen valor -->
+    <div class="incluye-valor" data-card>
+      <div class="iv-left">
+        <div class="iv-tag">Solo el 7 de Noviembre · Bogotá</div>
+        <div class="iv-precio-label">Precio especial ahora:</div>
+        <div class="iv-precio" id="incluye-precio">$195.000 COP</div>
+        <div class="iv-precio-tachado" id="incluye-precio-tachado">Precio regular $299.000</div>
+      </div>
+      <div class="iv-right">
+        <a href="#inscripcion" class="btn-primary" style="white-space:nowrap">
+          Quiero mi cupo
+          <svg class="btn-arrow" width="16" height="12" viewBox="0 0 16 12" fill="none"><path d="M9 1l5 5-5 5M1 6h13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </a>
       </div>
     </div>
   </div>
@@ -1587,9 +1671,15 @@
 
     <div class="form-wrap" id="form-wrap">
       <form id="form" onsubmit="submitForm(event)">
-        <div class="f-group">
-          <label class="f-label">Nombre completo</label>
-          <input class="f-input" type="text" name="nombre" placeholder="Tu nombre completo" required />
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+          <div class="f-group" style="margin-bottom:0">
+            <label class="f-label">Nombres</label>
+            <input class="f-input" type="text" name="nombres" placeholder="Tus nombres" required />
+          </div>
+          <div class="f-group" style="margin-bottom:0">
+            <label class="f-label">Apellidos</label>
+            <input class="f-input" type="text" name="apellidos" placeholder="Tus apellidos" required />
+          </div>
         </div>
         <div class="f-group">
           <label class="f-label">Email</label>
@@ -1828,6 +1918,12 @@ function submitForm(e) {
     if (hp) { hp.textContent = PRECIO_FULL; hp.style.color = '#FF6060'; }
     const hpt = document.getElementById('hero-precio-tachado');
     if (hpt) hpt.style.display = 'none';
+
+    // Actualizar sección incluye
+    const ip = document.getElementById('incluye-precio');
+    if (ip) { ip.textContent = PRECIO_FULL + ' COP'; ip.style.color = '#FF6060'; }
+    const ipt = document.getElementById('incluye-precio-tachado');
+    if (ipt) ipt.style.display = 'none';
   }
 
   function tick() {
