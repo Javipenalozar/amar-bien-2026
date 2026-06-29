@@ -159,18 +159,26 @@
     }
 
     /* Poster como fondo derecho */
-    .fire-heart {
+    /* Wrapper que recorta el poster para mostrar solo el corazón */
+    .fire-heart-wrap {
       position: absolute;
-      right: 0;
-      top: 0;
-      width: 52%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center center;
+      right: -2%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 50%;
+      height: 85%;
+      overflow: hidden;
       opacity: 0;
       animation: heartReveal 1.5s ease forwards 0.3s;
-      mask-image: linear-gradient(to left, rgba(0,0,0,0.95) 40%, rgba(0,0,0,0) 100%);
-      -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,0.95) 40%, rgba(0,0,0,0) 100%);
+      mask-image: linear-gradient(to left, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
+      -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
+    }
+    .fire-heart {
+      width: 200%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 72% 38%;
+      display: block;
     }
     @keyframes heartReveal {
       0%   { opacity: 0; filter: blur(10px); }
@@ -1167,9 +1175,11 @@
 <!-- ══════════ HERO ══════════ -->
 <section id="hero">
 
-  <!-- Poster oficial como imagen derecha del hero -->
+  <!-- Poster oficial recortado para mostrar solo el corazón -->
   <div class="heart-glow"></div>
-  <img src="poster.png" class="fire-heart" alt="Amar Bien 2026">
+  <div class="fire-heart-wrap">
+    <img src="poster.png" class="fire-heart" alt="Amar Bien 2026">
+  </div>
 
   <!-- Grietas hero -->
   <svg class="hero-cracks" viewBox="0 0 800 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
