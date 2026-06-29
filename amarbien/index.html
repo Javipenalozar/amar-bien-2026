@@ -1062,18 +1062,82 @@
       letter-spacing: 0.05em;
     }
 
-    /* ── RESPONSIVE ── */
+    /* ── RESPONSIVE MOBILE ── */
     @media (max-width: 768px) {
-      nav { padding: 16px 24px; }
-      .hero-content { padding: 100px 24px 80px; }
-      .fire-heart { display: none; }
+      /* Urgency bar */
+      #urgency-inner { flex-direction: column; gap: 4px; font-size: 0.68rem; text-align: center; }
+      #urgency-bar { padding: 10px 16px; }
+      .u-sep { display: none; }
+
+      /* Nav */
+      nav { padding: 14px 20px; top: 68px; }
+      .nav-logo span { font-size: 0.75rem; letter-spacing: 0.2em; }
+      .nav-cta { padding: 8px 16px; font-size: 0.65rem; }
+
+      /* Hero */
+      #hero { background: radial-gradient(ellipse at 50% 30%, #2A0000 0%, #060404 70%); }
+      .hero-content { padding: 110px 24px 100px; }
+      .fire-heart {
+        display: block;
+        position: absolute;
+        right: -20%;
+        bottom: 0;
+        top: auto;
+        transform: none;
+        width: 90%;
+        opacity: 0.2;
+        pointer-events: none;
+      }
       .heart-glow { display: none; }
-      .javi-grid { grid-template-columns: 1fr; gap: 40px; }
-      .javi-foto-wrap { display: none; }
-      .container, .container-wide { padding: 80px 24px; }
+      .manifesto-word { font-size: clamp(3rem, 18vw, 5rem); }
+      .hero-fecha { flex-wrap: wrap; gap: 12px; }
+      .btn-primary { padding: 16px 32px; font-size: 0.75rem; width: 100%; justify-content: center; }
+      .hero-subtext { font-size: 0.65rem; text-align: center; }
+      .tagline { font-size: 1rem; }
+
+      /* Secciones */
+      .container, .container-wide { padding: 64px 20px; }
+      .s-title { font-size: clamp(1.8rem, 7vw, 2.5rem); }
+
+      /* Stats */
+      .stats-row { gap: 24px; }
+      .stat .num { font-size: 2.5rem; }
+
+      /* Manifiesto scroll */
+      .manifiesto-items { padding: 64px 20px; }
+      .m-word { font-size: clamp(3rem, 18vw, 5.5rem); }
+
+      /* Incluye grid */
+      .incluye-grid { grid-template-columns: 1fr; }
+
+      /* Sobre Javi — mostrar foto en mobile */
+      .javi-grid { grid-template-columns: 1fr; gap: 32px; }
+      .javi-foto-wrap { display: block; max-width: 260px; margin: 0 auto; }
+
+      /* Detalles */
+      .d-grid { grid-template-columns: 1fr 1fr; }
+      #cupos-bar { margin-top: 32px; margin-bottom: 32px; }
+      .precio-monto { font-size: 2.5rem; }
+
+      /* Testimonios */
+      .t-grid { grid-template-columns: 1fr; }
+
+      /* Formulario */
+      .form-wrap { padding: 28px 20px; margin-top: 40px; }
+      .c-btns { flex-direction: column; align-items: center; }
+      .btn-wa, .btn-mp { width: 100%; justify-content: center; }
+
+      /* FAQ */
+      .faq-q { font-size: 0.95rem; }
+
+      /* Footer */
+      .f-links { gap: 16px; flex-direction: column; align-items: center; }
+    }
+
+    @media (max-width: 400px) {
+      .manifesto-word { font-size: 15vw; }
+      .m-word { font-size: 16vw; }
       .d-grid { grid-template-columns: 1fr; }
-      .form-wrap { padding: 32px 24px; }
-      .stats-row { gap: 32px; }
     }
   </style>
 </head>
@@ -1101,42 +1165,7 @@
 <!-- NAVBAR -->
 <nav id="navbar">
   <div class="nav-logo">
-    <!-- Logo mejorado: corazón partido con punta de espada -->
-    <svg viewBox="0 0 120 140" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="ns" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#E8E4DC"/>
-          <stop offset="40%" stop-color="#C8C0B0"/>
-          <stop offset="100%" stop-color="#8A8078"/>
-        </linearGradient>
-        <linearGradient id="nr" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#9A0000"/>
-          <stop offset="60%" stop-color="#C02020"/>
-          <stop offset="100%" stop-color="#7A0000"/>
-        </linearGradient>
-        <linearGradient id="nspike" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#F0ECE4"/>
-          <stop offset="100%" stop-color="#A09888"/>
-        </linearGradient>
-        <filter id="nglow">
-          <feGaussianBlur stdDeviation="1.5" result="b"/>
-          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-        </filter>
-      </defs>
-      <!-- Punta de espada (arriba, mármol) -->
-      <polygon points="60,0 54,32 66,32" fill="url(#nspike)" filter="url(#nglow)"/>
-      <!-- Mitad izquierda del corazón (mármol/plata) -->
-      <path d="M60,110 C38,94 10,76 4,52 C-2,28 10,10 28,10 C40,10 52,20 60,32 L60,110 Z" fill="url(#ns)"/>
-      <!-- Linea divisoria oscura para dar profundidad -->
-      <line x1="60" y1="10" x2="60" y2="110" stroke="#1A1010" stroke-width="1.5" opacity="0.4"/>
-      <!-- Mitad derecha del corazón (rojo) -->
-      <path d="M60,110 C82,94 110,76 116,52 C122,28 110,10 92,10 C80,10 68,20 60,32 L60,110 Z" fill="url(#nr)"/>
-      <!-- Brillo en la punta superior -->
-      <ellipse cx="57" cy="18" rx="3" ry="6" fill="white" opacity="0.25" transform="rotate(-15,57,18)"/>
-      <!-- Punto de luz en la base -->
-      <circle cx="60" cy="112" r="3" fill="#C9A84C" opacity="0.9" filter="url(#nglow)"/>
-      <circle cx="60" cy="112" r="1.2" fill="#FFF0A0"/>
-    </svg>
+    <img src="logo.png" alt="Amar Bien Logo" style="width:36px;height:auto;filter:drop-shadow(0 0 8px rgba(201,168,76,0.3));" />
     <span>Amar Bien 2026</span>
   </div>
   <a href="#inscripcion" class="nav-cta">Reservar cupo</a>
@@ -1641,18 +1670,7 @@
 
 <!-- ══════════ FOOTER ══════════ -->
 <footer>
-  <svg class="f-logo" viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <linearGradient id="fl" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0%" stop-color="#C9A84C"/>
-        <stop offset="100%" stop-color="#E8C96A"/>
-      </linearGradient>
-    </defs>
-    <path d="M100,185 C60,158 18,128 8,88 C-2,48 18,18 48,18 C68,18 84,33 100,53 L100,185 Z" fill="url(#fl)" opacity="0.5"/>
-    <path d="M100,185 C140,158 182,128 192,88 C202,48 182,18 152,18 C132,18 116,33 100,53 L100,185 Z" fill="url(#fl)" opacity="0.8"/>
-    <polygon points="100,2 93,38 107,38" fill="url(#fl)"/>
-    <circle cx="100" cy="185" r="3" fill="#FFF0A0" opacity="0.8"/>
-  </svg>
+  <img class="f-logo" src="logo.png" alt="Amar Bien Logo" />
   <div class="f-tagline">"Es posible"</div>
   <div class="f-links">
     <a href="https://wa.me/573238016527" target="_blank">+57 323 801 6527</a>
