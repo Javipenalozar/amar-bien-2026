@@ -1226,7 +1226,7 @@
     </span>
     <span class="u-sep">·</span>
     <span id="urgency-timer">
-      Precio especial expira en: <strong id="countdown-display">15:00</strong>
+      Precio especial hasta el 30 jul · termina en: <strong id="countdown-display">--</strong>
     </span>
     <span class="u-sep">·</span>
     <a href="#inscripcion" id="urgency-cta">Reservar ahora →</a>
@@ -1873,26 +1873,21 @@ function submitForm(e) {
   document.getElementById('email-conf').textContent = email;
 }
 
-// ── COUNTDOWN: precio especial (15 min desde primera visita) ──
+// ── COUNTDOWN: precio especial hasta el 30 de julio 2026 ──
 (function() {
-  const DURACION = 15 * 60; // 15 minutos en segundos
-  const KEY = 'ab2026_timer_end';
+  const FECHA_FIN = new Date('2026-07-31T00:00:00-05:00'); // medianoche Colombia 30 jul
   const PRECIO_ESPECIAL = '$195.000';
   const PRECIO_FULL     = '$299.000';
 
-  // Guardar o recuperar el tiempo de expiración en sessionStorage
-  let endTime = sessionStorage.getItem(KEY);
-  if (!endTime) {
-    endTime = Date.now() + DURACION * 1000;
-    sessionStorage.setItem(KEY, endTime);
-  } else {
-    endTime = parseInt(endTime);
-  }
+  const endTime = FECHA_FIN.getTime();
 
   function formatTime(secs) {
-    const m = Math.floor(secs / 60);
+    const d = Math.floor(secs / 86400);
+    const h = Math.floor((secs % 86400) / 3600);
+    const m = Math.floor((secs % 3600) / 60);
     const s = secs % 60;
-    return `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+    if (d > 0) return `${d}d ${String(h).padStart(2,'0')}h ${String(m).padStart(2,'0')}m`;
+    return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
   }
 
   function setExpired() {
