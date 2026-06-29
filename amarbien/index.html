@@ -1226,7 +1226,7 @@
     </span>
     <span class="u-sep">·</span>
     <span id="urgency-timer">
-      Precio especial hasta el 30 jul · termina en: <strong id="countdown-display">--</strong>
+      Solo <strong id="cupos-especial-display">23</strong> cupos al precio especial · <strong style="color:var(--oro)">$195.000</strong>
     </span>
     <span class="u-sep">·</span>
     <a href="#inscripcion" id="urgency-cta">Reservar ahora →</a>
@@ -1456,9 +1456,18 @@
     <div class="incluye-valor" data-card>
       <div class="iv-left">
         <div class="iv-tag">Solo el 7 de Noviembre · Bogotá</div>
-        <div class="iv-precio-label">Precio especial ahora:</div>
+        <div class="iv-precio-label">Precio especial — solo <strong id="incluye-cupos-especial">23</strong> cupos:</div>
         <div class="iv-precio" id="incluye-precio">$195.000 COP</div>
         <div class="iv-precio-tachado" id="incluye-precio-tachado">Precio regular $299.000</div>
+        <!-- Barra de cupos especiales -->
+        <div style="margin-top:12px;">
+          <div style="display:flex;justify-content:space-between;font-family:'Inter',sans-serif;font-size:0.68rem;color:#6A5A4A;margin-bottom:5px;">
+            <span id="iv-cupos-texto">17 de 40 cupos especiales tomados</span>
+          </div>
+          <div style="height:4px;background:rgba(255,255,255,0.06);border-radius:2px;overflow:hidden;width:100%;">
+            <div id="iv-barra-especial" style="height:100%;background:linear-gradient(to right,var(--rojo),var(--oro));border-radius:2px;width:42.5%;transition:width 1s ease;"></div>
+          </div>
+        </div>
       </div>
       <div class="iv-right">
         <a href="#inscripcion" class="btn-primary" style="white-space:nowrap">
@@ -1873,32 +1882,19 @@ function submitForm(e) {
   document.getElementById('email-conf').textContent = email;
 }
 
-// ── COUNTDOWN: precio especial hasta el 30 de julio 2026 ──
+// ── PRECIO ESPECIAL: basado en cupos limitados ──
 (function() {
-  const FECHA_FIN = new Date('2026-07-31T00:00:00-05:00'); // medianoche Colombia 30 jul
-  const PRECIO_ESPECIAL = '$195.000';
-  const PRECIO_FULL     = '$299.000';
-
-  const endTime = FECHA_FIN.getTime();
-
-  function formatTime(secs) {
-    const d = Math.floor(secs / 86400);
-    const h = Math.floor((secs % 86400) / 3600);
-    const m = Math.floor((secs % 3600) / 60);
-    const s = secs % 60;
-    if (d > 0) return `${d}d ${String(h).padStart(2,'0')}h ${String(m).padStart(2,'0')}m`;
-    return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
-  }
+  const CUPOS_ESPECIAL   = 40;   // total cupos al precio especial
+  const CUPOS_VENDIDOS   = 17;   // ya vendidos (actualizar manualmente)
+  const CUPOS_RESTANTES  = CUPOS_ESPECIAL - CUPOS_VENDIDOS;
+  const PRECIO_ESPECIAL  = '$195.000';
+  const PRECIO_FULL      = '$299.000';
 
   function setExpired() {
-    // Cambiar UI a precio full
     document.getElementById('urgency-bar').classList.add('expired');
     document.getElementById('urgency-timer').innerHTML =
-      'Precio especial expirado — precio regular: <strong style="color:#FF6060">$299.000</strong>';
-    const cd = document.getElementById('countdown-display');
-    if (cd) { cd.textContent = '00:00'; cd.classList.add('urgent'); }
+      'Cupos especiales agotados — precio regular: <strong style="color:#FF6060">$299.000</strong>';
 
-    // Actualizar sección de detalles
     const pm = document.getElementById('precio-monto-main');
     if (pm) pm.textContent = PRECIO_FULL;
     const pt = document.getElementById('precio-tachado-main');
@@ -1906,44 +1902,33 @@ function submitForm(e) {
     const pl = document.getElementById('precio-label-main');
     if (pl) pl.textContent = 'Precio regular';
     const pd = document.getElementById('precio-desc-main');
-    if (pd) pd.innerHTML = 'El precio especial ya expiró para esta sesión.';
+    if (pd) pd.innerHTML = 'Los cupos al precio especial ya se agotaron.';
 
-    // Actualizar hero
     const hp = document.getElementById('hero-precio');
     if (hp) { hp.textContent = PRECIO_FULL; hp.style.color = '#FF6060'; }
     const hpt = document.getElementById('hero-precio-tachado');
     if (hpt) hpt.style.display = 'none';
 
-    // Actualizar sección incluye
     const ip = document.getElementById('incluye-precio');
     if (ip) { ip.textContent = PRECIO_FULL + ' COP'; ip.style.color = '#FF6060'; }
     const ipt = document.getElementById('incluye-precio-tachado');
     if (ipt) ipt.style.display = 'none';
   }
 
-  function tick() {
-    const remaining = Math.max(0, Math.round((endTime - Date.now()) / 1000));
-    const fmt = formatTime(remaining);
+  // Actualizar todos los displays de cupos especiales
+  document.querySelectorAll('#cupos-especial-display, #incluye-cupos-especial')
+    .forEach(el => el.textContent = CUPOS_RESTANTES);
 
-    // Actualizar todos los displays
-    const displays = [
-      document.getElementById('countdown-display'),
-      document.getElementById('countdown-detalles')
-    ];
-    displays.forEach(el => {
-      if (!el) return;
-      el.textContent = fmt;
-      if (remaining <= 60) el.classList.add('urgent');
-      else el.classList.remove('urgent');
-    });
+  // Barra de progreso
+  const pct = (CUPOS_VENDIDOS / CUPOS_ESPECIAL * 100).toFixed(1);
+  const barra = document.getElementById('iv-barra-especial');
+  if (barra) setTimeout(() => barra.style.width = pct + '%', 400);
+  const texto = document.getElementById('iv-cupos-texto');
+  if (texto) texto.textContent = `${CUPOS_VENDIDOS} de ${CUPOS_ESPECIAL} cupos especiales tomados`;
 
-    if (remaining <= 0) {
-      setExpired();
-      return;
-    }
-    setTimeout(tick, 1000);
+  if (CUPOS_RESTANTES <= 0) {
+    setExpired();
   }
-  tick();
 })();
 
 // ── CUPOS: contador animado ──
