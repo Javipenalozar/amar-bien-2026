@@ -1085,20 +1085,28 @@
 
       /* Hero */
       #hero { background: radial-gradient(ellipse at 50% 30%, #2A0000 0%, #060404 70%); }
-      .hero-content { padding: 110px 24px 100px; }
+      .hero-content { padding: 110px 24px 100px; max-width: 100%; }
+      /* En móvil: corazón como fondo centrado muy tenue */
+      .fire-heart-wrap {
+        width: 80% !important;
+        right: 50% !important;
+        transform: translate(50%, -50%) !important;
+        animation: none !important;
+        opacity: 0.15 !important;
+        mask-image: radial-gradient(ellipse at center, black 20%, transparent 75%) !important;
+        -webkit-mask-image: radial-gradient(ellipse at center, black 20%, transparent 75%) !important;
+        z-index: 0;
+      }
       .fire-heart {
-        display: block;
-        position: absolute;
-        right: -20%;
-        bottom: 0;
-        top: auto;
-        transform: none;
-        width: 90%;
-        opacity: 0.2;
-        pointer-events: none;
+        position: static !important;
+        width: 100% !important;
+        height: auto !important;
+        opacity: 1 !important;
+        animation: none !important;
+        filter: none !important;
       }
       .heart-glow { display: none; }
-      .manifesto-word { font-size: clamp(3rem, 18vw, 5rem); }
+      .manifesto-word { font-size: clamp(1.8rem, 8vw, 3rem); letter-spacing: -0.01em; }
       .hero-fecha { flex-wrap: wrap; gap: 12px; }
       .btn-primary { padding: 16px 32px; font-size: 0.75rem; width: 100%; justify-content: center; }
       .hero-subtext { font-size: 0.65rem; text-align: center; }
@@ -1144,8 +1152,8 @@
     }
 
     @media (max-width: 400px) {
-      .manifesto-word { font-size: 15vw; }
-      .m-word { font-size: 16vw; }
+      .manifesto-word { font-size: 8vw; letter-spacing: -0.01em; }
+      .m-word { font-size: 9vw; }
       .d-grid { grid-template-columns: 1fr; }
     }
   </style>
