@@ -623,60 +623,78 @@
     </div>
   </section>
 
-  <section id="evento">
-    <div class="container">
+  <section id="evento" style="padding:100px 0;background:linear-gradient(135deg,#030D0D 0%,#051F1C 50%,#030D0D 100%);overflow:hidden;position:relative;">
+
+    <div style="max-width:1200px;margin:0 auto;padding:0 32px;">
       <div class="section-header reveal">
         <p class="section-eyebrow">Próximos eventos presenciales</p>
         <h2 class="section-title">En escena</h2>
         <div class="section-rule"></div>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:32px;">
+    </div>
 
-        <!-- Stand-Up Therapy -->
-        <div class="reveal from-left" style="background:linear-gradient(145deg,#051512,#040F0D);border:1px solid rgba(232,195,10,0.15);padding:40px 36px;position:relative;overflow:hidden;">
-          <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#E8C30A,#F5D93A);"></div>
-          <div style="position:absolute;top:20px;right:24px;font-family:'Inter',sans-serif;font-size:0.6rem;color:#E8C30A;letter-spacing:0.18em;text-transform:uppercase;background:rgba(232,195,10,0.1);padding:4px 12px;border:1px solid rgba(232,195,10,0.2);">¡Próximo!</div>
-          <p style="font-family:'Inter',sans-serif;font-size:0.6rem;color:#E8C30A;letter-spacing:0.28em;text-transform:uppercase;margin-bottom:14px;">Show · Terapia</p>
-          <h3 style="font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:700;color:#F0FAF9;line-height:1.2;margin-bottom:12px;">Stand-Up<br/><em style="color:#E8C30A;">Therapy</em></h3>
-          <p style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:#5A9E99;line-height:1.75;margin-bottom:28px;">Una puesta en escena única donde reír es sanar. Humor, verdad y salud mental sobre un mismo escenario.</p>
-          <div style="display:flex;flex-direction:column;gap:12px;border-top:1px solid rgba(232,195,10,0.1);padding-top:22px;margin-bottom:28px;">
-            <div style="display:flex;justify-content:space-between;">
-              <span style="font-family:'Inter',sans-serif;font-size:0.62rem;color:#5A9E99;letter-spacing:0.15em;text-transform:uppercase;">Fecha</span>
-              <span style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:#F0FAF9;">2 Septiembre 2026</span>
-            </div>
-            <div style="display:flex;justify-content:space-between;">
-              <span style="font-family:'Inter',sans-serif;font-size:0.62rem;color:#5A9E99;letter-spacing:0.15em;text-transform:uppercase;">Ciudad</span>
-              <span style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:#F0FAF9;">Bogotá, Colombia</span>
-            </div>
+    <!-- EVENTO 1: STAND-UP THERAPY -->
+    <div class="ev-row reveal" data-href="https://standup.eventosjv.com" style="position:relative;border-top:1px solid rgba(232,195,10,0.12);border-bottom:1px solid rgba(232,195,10,0.12);margin-bottom:2px;cursor:pointer;overflow:hidden;transition:background 0.4s;">
+      <!-- número de fondo -->
+      <div class="ev-bgnum" style="position:absolute;right:-20px;top:50%;transform:translateY(-50%);font-family:'Playfair Display',serif;font-size:clamp(7rem,18vw,14rem);font-weight:900;color:rgba(232,195,10,0.04);line-height:1;pointer-events:none;user-select:none;transition:color 0.4s;">02</div>
+      <!-- línea izq animada -->
+      <div class="ev-line" style="position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,transparent,#E8C30A,transparent);transform:scaleY(0);transition:transform 0.5s cubic-bezier(.22,1,.36,1);transform-origin:center;"></div>
+
+      <div style="max-width:1200px;margin:0 auto;padding:48px 32px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:40px;">
+        <div>
+          <div style="display:flex;align-items:center;gap:16px;margin-bottom:18px;flex-wrap:wrap;">
+            <span style="font-family:'Inter',sans-serif;font-size:0.6rem;color:#E8C30A;letter-spacing:0.28em;text-transform:uppercase;border:1px solid rgba(232,195,10,0.35);padding:4px 14px;">Show · Terapia</span>
+            <span class="ev-live" style="font-family:'Inter',sans-serif;font-size:0.6rem;color:#4ADE80;letter-spacing:0.18em;text-transform:uppercase;display:flex;align-items:center;gap:6px;"><span style="display:inline-block;width:6px;height:6px;background:#4ADE80;border-radius:50%;animation:pulse-dot 1.5s infinite;"></span>Inscripciones abiertas</span>
           </div>
-          <a href="https://standup.eventosjv.com" target="_blank" rel="noopener" class="btn-oro">Ver show →</a>
-        </div>
-
-        <!-- Amar Bien -->
-        <div class="reveal from-right" style="background:linear-gradient(145deg,#051512,#040F0D);border:1px solid rgba(232,195,10,0.15);padding:40px 36px;position:relative;overflow:hidden;">
-          <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#14B8A6,#E8C30A);"></div>
-          <p style="font-family:'Inter',sans-serif;font-size:0.6rem;color:#14B8A6;letter-spacing:0.28em;text-transform:uppercase;margin-bottom:14px;">Evento · Transformación</p>
-          <h3 style="font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:700;color:#F0FAF9;line-height:1.2;margin-bottom:12px;">Amar Bien<br/><em style="color:#E8C30A;">2026</em></h3>
-          <p style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:#5A9E99;line-height:1.75;margin-bottom:28px;">Porque amar mucho no es lo mismo que amar bien. Un día completo de herramientas para relacionarte desde la consciencia.</p>
-          <div style="display:flex;flex-direction:column;gap:12px;border-top:1px solid rgba(232,195,10,0.1);padding-top:22px;margin-bottom:28px;">
-            <div style="display:flex;justify-content:space-between;">
-              <span style="font-family:'Inter',sans-serif;font-size:0.62rem;color:#5A9E99;letter-spacing:0.15em;text-transform:uppercase;">Fecha</span>
-              <span style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:#F0FAF9;">7 Noviembre 2026</span>
-            </div>
-            <div style="display:flex;justify-content:space-between;">
-              <span style="font-family:'Inter',sans-serif;font-size:0.62rem;color:#5A9E99;letter-spacing:0.15em;text-transform:uppercase;">Ciudad</span>
-              <span style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:#F0FAF9;">Bogotá, Colombia</span>
-            </div>
-            <div style="display:flex;justify-content:space-between;">
-              <span style="font-family:'Inter',sans-serif;font-size:0.62rem;color:#5A9E99;letter-spacing:0.15em;text-transform:uppercase;">Precio especial</span>
-              <span style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:#E8C30A;">$195.000 COP</span>
-            </div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.8rem);font-weight:900;color:#F0FAF9;line-height:1;margin-bottom:8px;letter-spacing:-0.01em;">STAND-UP <em style="color:#E8C30A;font-style:italic;">THERAPY</em></h3>
+          <p style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:#5A9E99;line-height:1.7;max-width:560px;margin-bottom:24px;">Una puesta en escena única donde reír es sanar. Humor, verdad y salud mental sobre el mismo escenario.</p>
+          <div style="display:flex;gap:32px;flex-wrap:wrap;">
+            <div><div style="font-family:'Inter',sans-serif;font-size:0.55rem;color:#5A9E99;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:3px;">Fecha</div><div style="font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:#F0FAF9;">2 Septiembre 2026</div></div>
+            <div><div style="font-family:'Inter',sans-serif;font-size:0.55rem;color:#5A9E99;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:3px;">Ciudad</div><div style="font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:#F0FAF9;">Bogotá</div></div>
+            <div><div style="font-family:'Inter',sans-serif;font-size:0.55rem;color:#5A9E99;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:3px;">Faltan</div><div id="cd-standup" style="font-family:'Inter',sans-serif;font-size:1.05rem;font-weight:700;color:#E8C30A;font-variant-numeric:tabular-nums;">—</div></div>
           </div>
-          <a href="/amarbien" class="btn-oro">Ver detalles →</a>
         </div>
-
+        <div style="text-align:right;flex-shrink:0;">
+          <div style="font-family:'Inter',sans-serif;font-size:0.68rem;color:#E8C30A;letter-spacing:0.15em;text-transform:uppercase;display:flex;align-items:center;gap:8px;justify-content:flex-end;">Ver show <span style="font-size:1.2rem;transition:transform 0.3s;" class="ev-arrow">→</span></div>
+        </div>
       </div>
     </div>
+
+    <!-- EVENTO 2: AMAR BIEN -->
+    <div class="ev-row reveal reveal-delay-1" data-href="/amarbien" style="position:relative;border-bottom:1px solid rgba(232,195,10,0.12);cursor:pointer;overflow:hidden;transition:background 0.4s;">
+      <div class="ev-bgnum" style="position:absolute;right:-20px;top:50%;transform:translateY(-50%);font-family:'Playfair Display',serif;font-size:clamp(7rem,18vw,14rem);font-weight:900;color:rgba(20,184,166,0.04);line-height:1;pointer-events:none;user-select:none;transition:color 0.4s;">07</div>
+      <div class="ev-line" style="position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,transparent,#14B8A6,transparent);transform:scaleY(0);transition:transform 0.5s cubic-bezier(.22,1,.36,1);transform-origin:center;"></div>
+
+      <div style="max-width:1200px;margin:0 auto;padding:48px 32px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:40px;">
+        <div>
+          <div style="display:flex;align-items:center;gap:16px;margin-bottom:18px;flex-wrap:wrap;">
+            <span style="font-family:'Inter',sans-serif;font-size:0.6rem;color:#14B8A6;letter-spacing:0.28em;text-transform:uppercase;border:1px solid rgba(20,184,166,0.35);padding:4px 14px;">Evento · Transformación</span>
+            <span style="font-family:'Inter',sans-serif;font-size:0.6rem;color:#E8C30A;letter-spacing:0.18em;text-transform:uppercase;">$195.000 COP</span>
+          </div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.8rem);font-weight:900;color:#F0FAF9;line-height:1;margin-bottom:8px;letter-spacing:-0.01em;">AMAR BIEN <em style="color:#E8C30A;font-style:italic;">2026</em></h3>
+          <p style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:#5A9E99;line-height:1.7;max-width:560px;margin-bottom:24px;">Porque amar mucho no es lo mismo que amar bien. Un día completo de herramientas para relacionarte desde la consciencia.</p>
+          <div style="display:flex;gap:32px;flex-wrap:wrap;">
+            <div><div style="font-family:'Inter',sans-serif;font-size:0.55rem;color:#5A9E99;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:3px;">Fecha</div><div style="font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:#F0FAF9;">7 Noviembre 2026</div></div>
+            <div><div style="font-family:'Inter',sans-serif;font-size:0.55rem;color:#5A9E99;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:3px;">Ciudad</div><div style="font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:#F0FAF9;">Bogotá</div></div>
+            <div><div style="font-family:'Inter',sans-serif;font-size:0.55rem;color:#5A9E99;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:3px;">Faltan</div><div id="cd-amarbien" style="font-family:'Inter',sans-serif;font-size:1.05rem;font-weight:700;color:#E8C30A;font-variant-numeric:tabular-nums;">—</div></div>
+          </div>
+        </div>
+        <div style="text-align:right;flex-shrink:0;">
+          <div style="font-family:'Inter',sans-serif;font-size:0.68rem;color:#14B8A6;letter-spacing:0.15em;text-transform:uppercase;display:flex;align-items:center;gap:8px;justify-content:flex-end;">Ver evento <span style="font-size:1.2rem;transition:transform 0.3s;" class="ev-arrow">→</span></div>
+        </div>
+      </div>
+    </div>
+
+    <style>
+      .ev-row:hover { background: rgba(232,195,10,0.03); }
+      .ev-row:hover .ev-line { transform: scaleY(1) !important; }
+      .ev-row:hover .ev-bgnum { color: rgba(232,195,10,0.07) !important; }
+      .ev-row:hover .ev-arrow { transform: translateX(6px); }
+      @media(max-width:600px){
+        .ev-row > div { grid-template-columns:1fr !important; }
+        .ev-row > div > div:last-child { display:none; }
+      }
+    </style>
   </section>
 
   <section id="cita">
@@ -932,6 +950,29 @@
       })
     }, { threshold: 0.12 })
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el))
+
+    /* ── FILAS DE EVENTOS CLICKEABLES ── */
+    document.querySelectorAll('.ev-row').forEach(row => {
+      row.addEventListener('click', () => window.open(row.dataset.href, row.dataset.href.startsWith('http') ? '_blank' : '_self'))
+    })
+
+    /* ── COUNTDOWN EVENTOS ── */
+    function countdown(targetDate, elId) {
+      const el = document.getElementById(elId)
+      if (!el) return
+      function tick() {
+        const diff = new Date(targetDate) - new Date()
+        if (diff <= 0) { el.textContent = '¡Hoy!'; return }
+        const d = Math.floor(diff / 86400000)
+        const h = Math.floor((diff % 86400000) / 3600000)
+        const m = Math.floor((diff % 3600000) / 60000)
+        const s = Math.floor((diff % 60000) / 1000)
+        el.textContent = `${d}d ${String(h).padStart(2,'0')}h ${String(m).padStart(2,'0')}m ${String(s).padStart(2,'0')}s`
+      }
+      tick(); setInterval(tick, 1000)
+    }
+    countdown('2026-09-02T20:00:00', 'cd-standup')
+    countdown('2026-11-07T08:00:00', 'cd-amarbien')
 
     /* ── CONTADORES ANIMADOS en stats ── */
     const statNums = document.querySelectorAll('.stat-num')
