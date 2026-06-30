@@ -797,6 +797,125 @@
       flex-shrink: 0;
     }
 
+    /* ── SECCIÓN: CONFERENCISTAS ── */
+    #conferencistas {
+      background: var(--negro);
+      position: relative;
+    }
+    #conferencistas::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(122,0,0,0.12) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .conf-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 48px;
+      margin-top: 48px;
+    }
+    .conf-card {
+      display: flex;
+      gap: 28px;
+      align-items: flex-start;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .conf-card.visible { opacity: 1; transform: translateY(0); }
+    .conf-foto-wrap {
+      flex-shrink: 0;
+      width: 120px;
+      height: 150px;
+      border-radius: 2px;
+      overflow: hidden;
+      border: 1px solid rgba(201,168,76,0.2);
+      position: relative;
+    }
+    .conf-foto-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+    .conf-foto-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 1px solid rgba(201,168,76,0.15);
+    }
+    .conf-info { flex: 1; }
+    .conf-tag {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--oro);
+      margin-bottom: 8px;
+      display: block;
+    }
+    .conf-nombre {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--blanco);
+      line-height: 1.2;
+      margin-bottom: 6px;
+    }
+    .conf-titulo {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.78rem;
+      color: var(--oro);
+      margin-bottom: 12px;
+      font-style: italic;
+    }
+    .conf-bio {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.82rem;
+      color: #8A7A6A;
+      line-height: 1.7;
+    }
+    .conf-especialidad {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 12px;
+    }
+    .conf-tag-esp {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.63rem;
+      padding: 3px 10px;
+      border: 1px solid rgba(201,168,76,0.25);
+      color: rgba(201,168,76,0.7);
+      border-radius: 20px;
+      letter-spacing: 0.05em;
+    }
+    /* Próximamente card */
+    .conf-card-soon {
+      border: 1px dashed rgba(201,168,76,0.15);
+      border-radius: 2px;
+      padding: 32px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 12px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s;
+      min-height: 180px;
+    }
+    .conf-card-soon.visible { opacity: 1; transform: translateY(0); }
+    .conf-soon-icon { font-size: 1.8rem; opacity: 0.4; }
+    .conf-soon-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.78rem;
+      color: #4A3A2A;
+      text-align: center;
+      line-height: 1.6;
+    }
+
     /* ── SECCIÓN: TESTIMONIOS ── */
     #testimonios {
       background: var(--gris-oscuro);
@@ -1504,6 +1623,55 @@
           <div class="cred">+40.000 personas acompañadas</div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CONFERENCISTAS ══════════ -->
+<section id="conferencistas">
+  <div class="container">
+    <div class="s-label">Quiénes te acompañan</div>
+    <h2 class="s-title">Los profesionales del evento</h2>
+    <div class="gold-line"></div>
+
+    <div class="conf-grid">
+
+      <!-- Conferencista 1: Laura Villamil -->
+      <div class="conf-card" data-card>
+        <div class="conf-foto-wrap">
+          <img src="laura.jpg" alt="Dra. Laura Villamil Cortés" />
+        </div>
+        <div class="conf-info">
+          <span class="conf-tag">Conferencista confirmada</span>
+          <div class="conf-nombre">Dra. Laura Villamil Cortés</div>
+          <div class="conf-titulo">Médica Psiquiatra · Autora · Conferencista</div>
+          <p class="conf-bio">Especialista en el diagnóstico y tratamiento integral de los trastornos mentales. Experta en estimulación magnética transcraneal y máster en psicofarmacología. Autora de libros y cuentos sobre salud mental y divulgadora científica.</p>
+          <div class="conf-especialidad">
+            <span class="conf-tag-esp">Salud mental</span>
+            <span class="conf-tag-esp">Psiquiatría</span>
+            <span class="conf-tag-esp">Neurociencia</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Próximamente 1 -->
+      <div class="conf-card-soon" data-card>
+        <div class="conf-soon-icon">✦</div>
+        <div class="conf-soon-text">
+          <strong style="color:#5A4A3A;display:block;margin-bottom:4px;">Próximo conferencista</strong>
+          Pronto anunciamos al segundo experto que estará en el escenario el 7 de noviembre.
+        </div>
+      </div>
+
+      <!-- Próximamente 2 -->
+      <div class="conf-card-soon" data-card>
+        <div class="conf-soon-icon">✦</div>
+        <div class="conf-soon-text">
+          <strong style="color:#5A4A3A;display:block;margin-bottom:4px;">Próximo conferencista</strong>
+          Tercer experto por confirmar. Más detalles muy pronto.
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
