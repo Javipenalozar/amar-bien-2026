@@ -233,6 +233,119 @@
       transform: translateY(-5px);
       box-shadow: 0 20px 48px rgba(10,61,58,0.35);
     }
+    .project-icon {
+      position: relative;
+      width: 48px;
+      height: 48px;
+      margin-bottom: 18px;
+      display: grid;
+      place-items: center;
+    }
+    .project-icon::before,
+    .project-icon::after {
+      content: "";
+      position: absolute;
+      display: block;
+    }
+    .project-icon .icon-core {
+      position: relative;
+      z-index: 2;
+      display: block;
+    }
+    .project-icon-heart::before {
+      inset: 4px;
+      border: 1px solid rgba(232,195,10,0.38);
+      border-radius: 50%;
+      animation: iconOrbit 6s linear infinite;
+    }
+    .project-icon-heart .icon-core {
+      width: 22px;
+      height: 22px;
+      background: #E8C30A;
+      transform: rotate(45deg);
+      box-shadow: 0 0 26px rgba(232,195,10,0.28);
+    }
+    .project-icon-heart .icon-core::before,
+    .project-icon-heart .icon-core::after {
+      content: "";
+      position: absolute;
+      width: 22px;
+      height: 22px;
+      background: #E8C30A;
+      border-radius: 50%;
+    }
+    .project-icon-heart .icon-core::before { left: -11px; top: 0; }
+    .project-icon-heart .icon-core::after { left: 0; top: -11px; }
+    .project-icon-flower .icon-core,
+    .project-icon-flower::before,
+    .project-icon-flower::after {
+      width: 18px;
+      height: 34px;
+      border: 1px solid rgba(94,234,212,0.9);
+      border-radius: 90% 30% 90% 30%;
+      background: rgba(20,184,166,0.14);
+      transform-origin: 50% 100%;
+    }
+    .project-icon-flower .icon-core { transform: rotate(0deg); }
+    .project-icon-flower::before { transform: rotate(60deg); }
+    .project-icon-flower::after { transform: rotate(-60deg); }
+    .project-icon-flower { animation: iconPulse 4.5s ease-in-out infinite; }
+    .project-icon-mic::before {
+      width: 20px;
+      height: 30px;
+      border: 2px solid #E8C30A;
+      border-radius: 14px;
+      background: linear-gradient(180deg, rgba(232,195,10,0.22), transparent);
+      top: 4px;
+    }
+    .project-icon-mic::after {
+      width: 30px;
+      height: 15px;
+      border-bottom: 2px solid #E8C30A;
+      border-left: 2px solid #E8C30A;
+      border-right: 2px solid #E8C30A;
+      border-radius: 0 0 18px 18px;
+      top: 23px;
+    }
+    .project-icon-mic .icon-core {
+      width: 2px;
+      height: 14px;
+      margin-top: 30px;
+      background: #E8C30A;
+    }
+    .project-icon-book::before,
+    .project-icon-book::after {
+      top: 10px;
+      width: 19px;
+      height: 27px;
+      border: 1px solid rgba(94,234,212,0.9);
+      background: rgba(20,184,166,0.12);
+    }
+    .project-icon-book::before {
+      left: 5px;
+      transform: skewY(8deg);
+      border-radius: 6px 2px 2px 6px;
+    }
+    .project-icon-book::after {
+      right: 5px;
+      transform: skewY(-8deg);
+      border-radius: 2px 6px 6px 2px;
+    }
+    .project-icon-book .icon-core {
+      width: 4px;
+      height: 30px;
+      background: #E8C30A;
+      box-shadow: 0 0 18px rgba(232,195,10,0.25);
+    }
+    @keyframes iconOrbit {
+      from { transform: rotate(0deg) scale(1); }
+      50% { transform: rotate(180deg) scale(1.08); }
+      to { transform: rotate(360deg) scale(1); }
+    }
+    @keyframes iconPulse {
+      0%, 100% { transform: scale(1); opacity: 0.86; }
+      50% { transform: scale(1.08); opacity: 1; }
+    }
     #modal-corner-br {
       position: absolute; bottom: 0; right: 0;
       width: 40px; height: 40px;
@@ -520,7 +633,7 @@
                   background:linear-gradient(145deg,#051512,#040F0D);
                   padding:36px 28px;position:relative;overflow:hidden;transition:all 0.35s;">
           <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#E8C30A,#F5D93A);"></div>
-          <div style="font-size:2rem;margin-bottom:16px;">❤️</div>
+          <div class="project-icon project-icon-heart" aria-hidden="true"><span class="icon-core"></span></div>
           <span style="font-family:'Inter',sans-serif;font-size:0.6rem;color:#E8C30A;letter-spacing:0.2em;text-transform:uppercase;">Evento presencial</span>
           <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:#F0FAF9;margin:10px 0 10px;line-height:1.3;">Amar Bien 2026</h3>
           <p style="font-family:'Cormorant Garamond',serif;font-size:1rem;color:#5A9E99;line-height:1.7;margin-bottom:20px;">Porque amar mucho no es lo mismo que amar bien. Bogotá, 7 Nov.</p>
@@ -537,7 +650,7 @@
                   background:linear-gradient(145deg,#051512,#040F0D);
                   padding:36px 28px;position:relative;overflow:hidden;transition:all 0.35s;">
           <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#14B8A6,#5EEAD4);"></div>
-          <div style="font-size:2rem;margin-bottom:16px;">🌸</div>
+          <div class="project-icon project-icon-flower" aria-hidden="true"><span class="icon-core"></span></div>
           <span style="font-family:'Inter',sans-serif;font-size:0.6rem;color:#14B8A6;letter-spacing:0.2em;text-transform:uppercase;">Academia</span>
           <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:#F0FAF9;margin:10px 0 10px;line-height:1.3;">Academia Reiki Anahata</h3>
           <p style="font-family:'Cormorant Garamond',serif;font-size:1rem;color:#5A9E99;line-height:1.7;margin-bottom:20px;">Formación oficial en Reiki para quienes desean sanar y acompañar a otros desde la energía universal.</p>
@@ -554,7 +667,7 @@
                   background:linear-gradient(145deg,#051512,#040F0D);
                   padding:36px 28px;position:relative;overflow:hidden;transition:all 0.35s;">
           <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#F5D93A,#E8C30A);"></div>
-          <div style="font-size:2rem;margin-bottom:16px;">🎤</div>
+          <div class="project-icon project-icon-mic" aria-hidden="true"><span class="icon-core"></span></div>
           <span style="font-family:'Inter',sans-serif;font-size:0.6rem;color:#E8C30A;letter-spacing:0.2em;text-transform:uppercase;">Show · Terapia</span>
           <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:#F0FAF9;margin:10px 0 10px;line-height:1.3;">Stand-Up Therapy</h3>
           <p style="font-family:'Cormorant Garamond',serif;font-size:1rem;color:#5A9E99;line-height:1.7;margin-bottom:20px;">Una puesta en escena única donde reír es sanar. Humor, verdad y salud mental sobre un mismo escenario.</p>
@@ -571,12 +684,12 @@
                   background:linear-gradient(145deg,#051512,#040F0D);
                   padding:36px 28px;position:relative;overflow:hidden;transition:all 0.35s;transition-delay:0.35s;">
           <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#0D6B65,#14B8A6);"></div>
-          <div style="font-size:2rem;margin-bottom:16px;">🧠</div>
+          <div class="project-icon project-icon-book" aria-hidden="true"><span class="icon-core"></span></div>
           <span style="font-family:'Inter',sans-serif;font-size:0.6rem;color:#14B8A6;letter-spacing:0.2em;text-transform:uppercase;">Libro</span>
           <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:#F0FAF9;margin:10px 0 10px;line-height:1.3;">¿Cómo estás?</h3>
           <p style="font-family:'Cormorant Garamond',serif;font-size:1rem;color:#5A9E99;line-height:1.7;margin-bottom:20px;">Mi segundo libro. Una invitación honesta a detenerte, mirarte hacia adentro y responder con verdad.</p>
           <div style="display:flex;justify-content:space-between;align-items:center;">
-            <span style="font-family:'Inter',sans-serif;font-size:0.75rem;color:#14B8A6;letter-spacing:0.1em;">📖 Segundo libro</span>
+            <span style="font-family:'Inter',sans-serif;font-size:0.75rem;color:#14B8A6;letter-spacing:0.1em;">Segundo libro</span>
             <span style="font-family:'Inter',sans-serif;font-size:0.68rem;color:#F0FAF9;letter-spacing:0.1em;">Ver programa →</span>
           </div>
         </a>
