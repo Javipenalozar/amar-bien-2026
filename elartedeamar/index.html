@@ -62,11 +62,38 @@
       backdrop-filter: blur(16px);
       border-bottom: 1px solid rgba(200,22,110,0.2);
     }
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 34px;
+      min-width: 0;
+    }
     .nav-logo {
       font-family: var(--font-d);
       font-size: 1rem;
       color: var(--gold);
       letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .nav-links a {
+      color: var(--muted);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
     }
     .nav-btn {
       padding: 8px 20px;
@@ -108,7 +135,7 @@
 
     /* ─── QUIZ SECTION ───────────────────────────────────── */
     #quiz {
-      min-height: 100vh;
+      min-height: 92vh;
       position: relative;
       overflow: hidden;
       display: flex;
@@ -204,7 +231,7 @@
     .quiz-stage {
       position: relative;
       flex: 1;
-      min-height: calc(100vh - 34px);
+      min-height: calc(92vh - 34px);
       overflow: hidden;
     }
 
@@ -222,8 +249,134 @@
     .quiz-card.active  { opacity: 1; transform: translateX(0);    pointer-events: auto; }
     .quiz-card.enter   { opacity: 0; transform: translateX(60px); }
     .quiz-card.exit    { opacity: 0; transform: translateX(-60px);}
+    .quiz-card.hero-card {
+      justify-content: stretch;
+      align-items: stretch;
+      padding: 130px 40px 72px;
+    }
 
     .quiz-inner { width: 100%; max-width: 640px; }
+    .hero-shell {
+      width: min(1180px, 100%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.02fr) minmax(320px, 0.78fr);
+      gap: clamp(34px, 6vw, 82px);
+      align-items: center;
+    }
+    .hero-copy { max-width: 650px; }
+    .hero-visual {
+      position: relative;
+      min-height: 560px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .heart-stage {
+      position: relative;
+      width: min(410px, 88vw);
+      aspect-ratio: 5 / 8;
+      overflow: hidden;
+      border: 1px solid rgba(232,168,32,0.28);
+      background: #090407;
+      box-shadow:
+        0 42px 120px rgba(200,22,110,0.26),
+        0 0 0 1px rgba(255,255,255,0.04) inset;
+    }
+    .heart-stage::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(16,8,16,0) 0%, rgba(16,8,16,0.42) 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
+    .heart-stage img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: saturate(1.08) contrast(1.04);
+      transform: scale(1.02);
+    }
+    .heart-caption {
+      position: absolute;
+      left: 22px;
+      right: 22px;
+      bottom: 22px;
+      z-index: 2;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 18px;
+    }
+    .heart-caption span:first-child {
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(245,238,232,0.74);
+    }
+    .heart-caption span:last-child {
+      color: var(--gold);
+      font-family: var(--font-d);
+      font-size: 1.15rem;
+      white-space: nowrap;
+    }
+    .hero-badge-stack {
+      position: absolute;
+      right: -18px;
+      top: 54px;
+      z-index: 3;
+      display: grid;
+      gap: 10px;
+    }
+    .hero-badge {
+      background: rgba(16,8,16,0.86);
+      border: 1px solid rgba(232,168,32,0.28);
+      backdrop-filter: blur(12px);
+      padding: 12px 14px;
+      min-width: 148px;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.24);
+    }
+    .hero-badge b {
+      display: block;
+      color: var(--text);
+      font-family: var(--font-d);
+      font-size: 1.18rem;
+      line-height: 1.05;
+    }
+    .hero-badge span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 0.64rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .hero-proof {
+      margin-top: 30px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      max-width: 580px;
+    }
+    .proof-item {
+      border-top: 1px solid rgba(232,168,32,0.28);
+      padding-top: 13px;
+    }
+    .proof-item b {
+      display: block;
+      color: var(--text);
+      font-family: var(--font-d);
+      font-size: 1.28rem;
+      line-height: 1;
+    }
+    .proof-item span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.68rem;
+      margin-top: 6px;
+    }
 
     /* Heart BG */
     .heart-bg {
@@ -250,9 +403,9 @@
     }
     .intro-h1 {
       font-family: var(--font-d);
-      font-size: clamp(3rem, 7vw, 5rem);
+      font-size: clamp(3.2rem, 8vw, 6.4rem);
       font-weight: 700;
-      line-height: 1.05;
+      line-height: 0.96;
       margin-bottom: 20px;
       color: var(--text);
     }
@@ -263,6 +416,12 @@
       max-width: 460px;
       line-height: 1.75;
       margin-bottom: 40px;
+    }
+    .intro-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
     }
     .btn-primary {
       display: inline-flex;
@@ -424,6 +583,67 @@
       margin-bottom: 14px; color: var(--text);
     }
     .gold-rule { width: 44px; height: 2px; background: var(--gold); margin-bottom: 48px; }
+    .section-lead {
+      max-width: 620px;
+      color: var(--muted);
+      font-size: 0.98rem;
+      line-height: 1.8;
+      margin: -28px 0 48px;
+    }
+
+    /* ─── RECORRIDO ──────────────────────────────────────── */
+    #recorrido {
+      background:
+        radial-gradient(ellipse at 70% 20%, rgba(232,168,32,0.1) 0%, transparent 44%),
+        radial-gradient(ellipse at 10% 90%, rgba(200,22,110,0.12) 0%, transparent 48%),
+        #100810;
+      border-top: 1px solid rgba(232,168,32,0.12);
+    }
+    .journey-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(232,168,32,0.14);
+      border: 1px solid rgba(232,168,32,0.14);
+    }
+    .journey-step {
+      background: rgba(16,8,16,0.96);
+      padding: 34px 30px;
+      min-height: 250px;
+      position: relative;
+    }
+    .journey-step::before {
+      content: attr(data-step);
+      position: absolute;
+      top: 26px;
+      right: 28px;
+      font-family: var(--font-d);
+      font-size: 3.2rem;
+      line-height: 1;
+      color: rgba(232,168,32,0.08);
+    }
+    .journey-tag {
+      display: inline-block;
+      color: var(--crimson);
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .journey-title {
+      font-family: var(--font-d);
+      font-size: 1.42rem;
+      line-height: 1.18;
+      color: var(--text);
+      margin-bottom: 14px;
+      max-width: 240px;
+    }
+    .journey-copy {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.72;
+    }
 
     /* ─── EVENTO ─────────────────────────────────────────── */
     #evento {
@@ -437,6 +657,14 @@
       display: grid;
       grid-template-columns: 1fr 380px;
       gap: 80px; align-items: start;
+    }
+    .event-panel {
+      border: 1px solid rgba(232,168,32,0.16);
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.035), rgba(255,255,255,0.01)),
+        rgba(24,13,24,0.58);
+      padding: 34px;
+      box-shadow: 0 28px 100px rgba(0,0,0,0.18);
     }
     .evento-meta { display: flex; gap: 40px; margin-bottom: 32px; flex-wrap: wrap; }
     .evento-meta-item { display: flex; flex-direction: column; gap: 4px; }
@@ -466,6 +694,13 @@
       object-fit: cover; opacity: 0.8;
       filter: saturate(0.75);
     }
+    .visual-note {
+      margin-top: 14px;
+      color: var(--subtle);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
 
     /* ─── ORGANIZADOR ────────────────────────────────────── */
     #organizador {
@@ -485,12 +720,13 @@
       border: 1px solid var(--border);
       display: flex; align-items: center; justify-content: center;
       overflow: hidden;
+      box-shadow: 0 30px 90px rgba(0,0,0,0.22);
     }
     .org-initials {
       font-family: var(--font-d); font-size: 4rem;
       font-weight: 700; color: var(--crimson); opacity: 0.3;
     }
-    .org-foto { width: 100%; height: 100%; object-fit: cover; }
+    .org-foto { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
     .org-tag {
       display: inline-block; padding: 3px 11px;
       background: var(--crimson-dim); color: var(--crimson);
@@ -579,6 +815,16 @@
         #100810;
       text-align: center;
     }
+    .precio-shell {
+      max-width: 720px;
+      margin: 0 auto;
+      border: 1px solid rgba(232,168,32,0.18);
+      background:
+        linear-gradient(135deg, rgba(232,168,32,0.08), rgba(200,22,110,0.08)),
+        rgba(16,8,16,0.68);
+      padding: clamp(34px, 6vw, 58px);
+      box-shadow: 0 34px 120px rgba(0,0,0,0.24);
+    }
     .precio-badge {
       display: inline-block; padding: 5px 16px;
       background: var(--gradient); color: white;
@@ -617,6 +863,14 @@
       border-top: 1px solid rgba(139,53,200,0.15);
     }
     .registro-wrap { max-width: 580px; margin: 0 auto; }
+    .registro-card {
+      border: 1px solid rgba(139,53,200,0.18);
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.012)),
+        rgba(24,13,24,0.72);
+      padding: clamp(28px, 5vw, 46px);
+      box-shadow: 0 30px 100px rgba(0,0,0,0.2);
+    }
     .f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .f-group { margin-bottom: 18px; }
     .f-label {
@@ -694,13 +948,27 @@
 
     /* ─── MOBILE ─────────────────────────────────────────── */
     @media (max-width: 768px) {
+      #quiz { min-height: auto; }
+      .quiz-stage { min-height: 960px; }
       .nav { padding: 14px 20px; }
+      .nav-links { display: none; }
+      .nav-actions { gap: 8px; }
       .nav-logo { font-size: 0.88rem; }
       .section { padding: 72px 22px; }
       .quiz-card { padding: 120px 22px 64px; }
+      .quiz-card.hero-card { padding: 112px 22px 64px; }
+      .hero-shell { grid-template-columns: 1fr; }
+      .hero-visual { min-height: auto; justify-content: flex-start; margin-top: -2px; }
+      .heart-stage { width: min(250px, 78vw); }
+      .hero-badge-stack { right: auto; left: 16px; top: 16px; }
+      .hero-badge { min-width: 118px; padding: 10px 12px; }
+      .hero-badge b { font-size: 1rem; }
+      .hero-proof { display: none; }
+      .intro-sub { margin-bottom: 28px; }
       .heart-bg { display: none; }
       .evento-grid { grid-template-columns: 1fr; gap: 44px; }
       .evento-img { order: -1; aspect-ratio: 4/3; }
+      .journey-grid { grid-template-columns: 1fr; }
       .org-grid { grid-template-columns: 1fr; gap: 32px; }
       .org-foto-wrap { max-width: 220px; }
       .conf-grid { grid-template-columns: 1fr; }
@@ -709,6 +977,7 @@
     }
     @media (max-width: 480px) {
       .intro-h1 { font-size: 2.8rem; }
+      .quiz-stage { min-height: 900px; }
       .q-text { font-size: 1.28rem; }
       .q-opt { font-size: 0.86rem; padding: 13px 14px; }
     }
@@ -724,8 +993,18 @@
 
 <!-- NAV -->
 <nav class="nav">
-  <div class="nav-logo">El Arte de Amar 2026</div>
-  <a class="nav-btn" href="#registro">Reservar cupo</a>
+  <div class="nav-left">
+    <div class="nav-logo">El Arte de Amar 2026</div>
+    <div class="nav-links" aria-label="Navegación principal">
+      <a href="#quiz">Quiz</a>
+      <a href="#evento">Evento</a>
+      <a href="#conferencistas">Profesionales</a>
+      <a href="#precio">Precio</a>
+    </div>
+  </div>
+  <div class="nav-actions">
+    <a class="nav-btn" href="#registro">Reservar cupo</a>
+  </div>
 </nav>
 
 <!-- ══════════════════════════════════════════════════════════
@@ -748,16 +1027,39 @@
   <div class="quiz-stage" id="quiz-stage">
 
     <!-- ── Intro ── -->
-    <div class="quiz-card active" id="c-intro">
-      <div class="quiz-inner">
-        <div class="intro-eyebrow">7 de Noviembre · Bogotá · 2026</div>
-        <h1 class="intro-h1">¿Amas...<br>o <em>temes?</em></h1>
-        <p class="intro-sub">No todo lo que duele es amor. Responde 5 preguntas y descubre si en tus relaciones domina el amor o el miedo — y qué hacer al respecto.</p>
-        <button class="btn-primary" onclick="startQuiz()">
-          Descubrir mi perfil
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </button>
-        <p class="intro-note">5 preguntas · menos de 2 minutos</p>
+    <div class="quiz-card hero-card active" id="c-intro">
+      <div class="hero-shell">
+        <div class="hero-copy">
+          <div class="intro-eyebrow">7 de Noviembre · Bogotá · 2026</div>
+          <h1 class="intro-h1">¿Amas...<br>o <em>temes?</em></h1>
+          <p class="intro-sub">No todo lo que duele es amor. Responde 5 preguntas y descubre si en tus relaciones domina el amor o el miedo — y qué hacer al respecto.</p>
+          <div class="intro-actions">
+            <button class="btn-primary" onclick="startQuiz()">
+              Descubrir mi perfil
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+            <a class="btn-outline" href="#evento">Ver evento</a>
+          </div>
+          <p class="intro-note">5 preguntas · menos de 2 minutos · resultado inmediato</p>
+          <div class="hero-proof">
+            <div class="proof-item"><b>1 día</b><span>Experiencia presencial</span></div>
+            <div class="proof-item"><b>180</b><span>Cupos disponibles</span></div>
+            <div class="proof-item"><b>23</b><span>Cupos especiales restantes</span></div>
+          </div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="hero-badge-stack">
+            <div class="hero-badge"><b>$195.000</b><span>Precio especial</span></div>
+            <div class="hero-badge"><b>7 Nov</b><span>Bogotá</span></div>
+          </div>
+          <div class="heart-stage">
+            <img src="heart.png" alt="" />
+            <div class="heart-caption">
+              <span>Reconocer · Elegir · Construir</span>
+              <span>2026</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -851,42 +1153,74 @@
 </section>
 
 <!-- ══════════════════════════════════════════════════════════
+     RECORRIDO
+══════════════════════════════════════════════════════════ -->
+<section id="recorrido" class="section">
+  <div class="container">
+    <div class="s-eyebrow">Lo que vas a vivir</div>
+    <h2 class="s-title">Tres movimientos para amar desde otro lugar</h2>
+    <div class="gold-rule"></div>
+    <p class="section-lead">El evento no está diseñado para darte frases bonitas. Está construido como una experiencia guiada para mirar tu historia, reconocer tus patrones y salir con una decisión más consciente.</p>
+    <div class="journey-grid">
+      <div class="journey-step" data-step="01">
+        <span class="journey-tag">Reconocer</span>
+        <h3 class="journey-title">Ver lo que llamabas amor, pero era miedo</h3>
+        <p class="journey-copy">Identificarás señales de apego, repetición, ansiedad, evitación y heridas que se disfrazan de intensidad.</p>
+      </div>
+      <div class="journey-step" data-step="02">
+        <span class="journey-tag">Elegir</span>
+        <h3 class="journey-title">Dejar de reaccionar desde la herida</h3>
+        <p class="journey-copy">Tendrás ejercicios y conversaciones para elegir con más calma, límites y claridad emocional.</p>
+      </div>
+      <div class="journey-step" data-step="03">
+        <span class="journey-tag">Construir</span>
+        <h3 class="journey-title">Crear relaciones que no te apaguen</h3>
+        <p class="journey-copy">Saldrás con herramientas concretas para sostener vínculos más honestos, seguros y presentes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
      EVENTO
 ══════════════════════════════════════════════════════════ -->
 <section id="evento" class="section">
   <div class="container">
     <div class="evento-grid">
       <div>
-        <div class="s-eyebrow">El evento</div>
-        <h2 class="s-title">Un día para aprender<br>a distinguir el amor del miedo</h2>
-        <div class="gold-rule"></div>
-        <div class="evento-meta">
-          <div class="evento-meta-item">
-            <span class="em-label">Fecha</span>
-            <span class="em-val">7 Nov 2026</span>
+        <div class="event-panel">
+          <div class="s-eyebrow">El evento</div>
+          <h2 class="s-title">Un día para aprender<br>a distinguir el amor del miedo</h2>
+          <div class="gold-rule"></div>
+          <div class="evento-meta">
+            <div class="evento-meta-item">
+              <span class="em-label">Fecha</span>
+              <span class="em-val">7 Nov 2026</span>
+            </div>
+            <div class="evento-meta-item">
+              <span class="em-label">Ciudad</span>
+              <span class="em-val">Bogotá</span>
+            </div>
+            <div class="evento-meta-item">
+              <span class="em-label">Cupos</span>
+              <span class="em-val">180</span>
+            </div>
           </div>
-          <div class="evento-meta-item">
-            <span class="em-label">Ciudad</span>
-            <span class="em-val">Bogotá</span>
-          </div>
-          <div class="evento-meta-item">
-            <span class="em-label">Cupos</span>
-            <span class="em-val">180</span>
-          </div>
+          <p class="evento-body">El Arte de Amar 2026 es un retiro de 1 día diseñado para que entiendas qué mueve tus relaciones — si el amor o el miedo — y salgas con herramientas reales para elegir diferente.</p>
+          <p class="evento-body">Conferencias con profesionales, ejercicios vivenciales en vivo y conversaciones que hacen que las cosas encajen de verdad.</p>
+          <ul class="incluye-list">
+            <li>Conferencias con profesionales confirmados en salud mental y relaciones</li>
+            <li>Ejercicios vivenciales guiados durante el evento</li>
+            <li>Material de trabajo descargable</li>
+            <li>Refrigerio durante el evento</li>
+            <li>Certificado digital de participación</li>
+            <li>Acceso a comunidad exclusiva post-evento</li>
+          </ul>
         </div>
-        <p class="evento-body">El Arte de Amar 2026 es un retiro de 1 día diseñado para que entiendas qué mueve tus relaciones — si el amor o el miedo — y salgas con herramientas reales para elegir diferente.</p>
-        <p class="evento-body">Conferencias con profesionales, ejercicios vivenciales en vivo y conversaciones que hacen que las cosas encajen de verdad.</p>
-        <ul class="incluye-list">
-          <li>Conferencias con profesionales confirmados en salud mental y relaciones</li>
-          <li>Ejercicios vivenciales guiados durante el evento</li>
-          <li>Material de trabajo descargable</li>
-          <li>Refrigerio durante el evento</li>
-          <li>Certificado digital de participación</li>
-          <li>Acceso a comunidad exclusiva post-evento</li>
-        </ul>
       </div>
       <div>
         <img src="heart.png" alt="El Arte de Amar 2026" class="evento-img" />
+        <p class="visual-note">Una experiencia sobre vínculos, límites y elección consciente.</p>
       </div>
     </div>
   </div>
@@ -902,7 +1236,7 @@
     <div class="gold-rule"></div>
     <div class="org-grid">
       <div class="org-foto-wrap">
-        <div class="org-initials">JP</div>
+        <img src="javi.png" alt="Javi Peñaloza" class="org-foto" />
       </div>
       <div>
         <span class="org-tag">Organizador y facilitador</span>
@@ -956,25 +1290,27 @@
 ══════════════════════════════════════════════════════════ -->
 <section id="precio" class="section">
   <div class="container">
-    <div class="s-eyebrow" style="text-align:center;color:var(--muted)">Inversión</div>
-    <h2 class="s-title" style="text-align:center">Asegura tu cupo</h2>
-    <div class="gold-rule" style="margin:0 auto 40px"></div>
-    <div class="precio-badge">Precio especial · Cupos limitados</div>
-    <div class="precio-main">$195.000</div>
-    <div class="precio-tachado">Precio regular: $299.000 COP</div>
-    <div class="cupos-wrap">
-      <div class="cupos-track">
-        <div class="cupos-fill" id="cupos-bar" style="width:42.5%"></div>
+    <div class="precio-shell">
+      <div class="s-eyebrow" style="text-align:center;color:var(--muted)">Inversión</div>
+      <h2 class="s-title" style="text-align:center">Asegura tu cupo</h2>
+      <div class="gold-rule" style="margin:0 auto 40px"></div>
+      <div class="precio-badge">Precio especial · Cupos limitados</div>
+      <div class="precio-main">$195.000</div>
+      <div class="precio-tachado">Precio regular: $299.000 COP</div>
+      <div class="cupos-wrap">
+        <div class="cupos-track">
+          <div class="cupos-fill" id="cupos-bar" style="width:42.5%"></div>
+        </div>
+        <div class="cupos-label">
+          <strong id="cupos-num">23</strong> cupos al precio especial ·
+          <strong>17 ya reservados</strong>
+        </div>
       </div>
-      <div class="cupos-label">
-        <strong id="cupos-num">23</strong> cupos al precio especial ·
-        <strong>17 ya reservados</strong>
-      </div>
+      <a class="btn-primary" href="#registro">
+        Quiero mi cupo
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
     </div>
-    <a class="btn-primary" href="#registro">
-      Quiero mi cupo
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    </a>
   </div>
 </section>
 
@@ -984,58 +1320,60 @@
 <section id="registro" class="section">
   <div class="container">
     <div class="registro-wrap">
-      <div class="s-eyebrow">Registro</div>
-      <h2 class="s-title">Un paso y ya eres parte</h2>
-      <div class="gold-rule"></div>
+      <div class="registro-card">
+        <div class="s-eyebrow">Registro</div>
+        <h2 class="s-title">Un paso y ya eres parte</h2>
+        <div class="gold-rule"></div>
 
-      <div id="form-wrap">
-        <form onsubmit="submitForm(event)">
-          <div class="f-row" style="margin-bottom:18px">
-            <div class="f-group" style="margin-bottom:0">
-              <label class="f-label">Nombres</label>
-              <input class="f-input" type="text" name="nombres" placeholder="Tus nombres" required />
+        <div id="form-wrap">
+          <form onsubmit="submitForm(event)">
+            <div class="f-row" style="margin-bottom:18px">
+              <div class="f-group" style="margin-bottom:0">
+                <label class="f-label">Nombres</label>
+                <input class="f-input" type="text" name="nombres" placeholder="Tus nombres" required />
+              </div>
+              <div class="f-group" style="margin-bottom:0">
+                <label class="f-label">Apellidos</label>
+                <input class="f-input" type="text" name="apellidos" placeholder="Tus apellidos" required />
+              </div>
             </div>
-            <div class="f-group" style="margin-bottom:0">
-              <label class="f-label">Apellidos</label>
-              <input class="f-input" type="text" name="apellidos" placeholder="Tus apellidos" required />
+            <div class="f-group">
+              <label class="f-label">Email</label>
+              <input class="f-input" type="email" name="email" placeholder="tu@email.com" required />
             </div>
-          </div>
-          <div class="f-group">
-            <label class="f-label">Email</label>
-            <input class="f-input" type="email" name="email" placeholder="tu@email.com" required />
-          </div>
-          <div class="f-group">
-            <label class="f-label">WhatsApp</label>
-            <input class="f-input" type="tel" name="telefono" placeholder="+57 300 000 0000" required />
-          </div>
-          <div class="f-group">
-            <label class="f-label">¿Cómo asistes?</label>
-            <select class="f-select" name="acompanante" required>
-              <option value="">Selecciona una opción</option>
-              <option value="solo">Solo/a</option>
-              <option value="pareja">En pareja</option>
-              <option value="amigo">Con un amigo/a</option>
-            </select>
-          </div>
-          <button type="submit" class="btn-submit">Reservar mi cupo →</button>
-        </form>
-        <p class="form-note">Al reservar confirmas que tienes +18 años y aceptas las condiciones del evento.</p>
-      </div>
-
-      <div id="confirmacion">
-        <div class="conf-icon-big">✨</div>
-        <div class="conf-title-big">¡<span id="conf-nombre"></span>, ya casi eres parte!</div>
-        <p class="conf-body-txt">Tus datos quedaron registrados. Ahora asegura tu cupo haciendo el pago — rápido y seguro con Bold.</p>
-        <div class="conf-btns">
-          <a id="btn-bold" href="https://checkout.bold.co/payment/LNK_LP7F84IOVO" target="_blank" class="btn-bold-pay">
-            💳 Pagar con Bold — $195.000
-          </a>
-          <a id="btn-wa" href="https://wa.me/573238016527" target="_blank" class="btn-wa-pay">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            Prefiero pagar por WhatsApp
-          </a>
+            <div class="f-group">
+              <label class="f-label">WhatsApp</label>
+              <input class="f-input" type="tel" name="telefono" placeholder="+57 300 000 0000" required />
+            </div>
+            <div class="f-group">
+              <label class="f-label">¿Cómo asistes?</label>
+              <select class="f-select" name="acompanante" required>
+                <option value="">Selecciona una opción</option>
+                <option value="solo">Solo/a</option>
+                <option value="pareja">En pareja</option>
+                <option value="amigo">Con un amigo/a</option>
+              </select>
+            </div>
+            <button type="submit" class="btn-submit">Reservar mi cupo →</button>
+          </form>
+          <p class="form-note">Al reservar confirmas que tienes +18 años y aceptas las condiciones del evento.</p>
         </div>
-        <p class="conf-seg">Bold es 100% seguro · Tu cupo queda reservado al confirmar el pago</p>
+
+        <div id="confirmacion">
+          <div class="conf-icon-big">✨</div>
+          <div class="conf-title-big">¡<span id="conf-nombre"></span>, ya casi eres parte!</div>
+          <p class="conf-body-txt">Tus datos quedaron registrados. Ahora asegura tu cupo haciendo el pago — rápido y seguro con Bold.</p>
+          <div class="conf-btns">
+            <a id="btn-bold" href="https://checkout.bold.co/payment/LNK_LP7F84IOVO" target="_blank" class="btn-bold-pay">
+              💳 Pagar con Bold — $195.000
+            </a>
+            <a id="btn-wa" href="https://wa.me/573238016527" target="_blank" class="btn-wa-pay">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Prefiero pagar por WhatsApp
+            </a>
+          </div>
+          <p class="conf-seg">Bold es 100% seguro · Tu cupo queda reservado al confirmar el pago</p>
+        </div>
       </div>
 
     </div>
