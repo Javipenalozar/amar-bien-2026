@@ -1,1 +1,3 @@
-https://amarbien.eventosjv.com/* https://eventosjv.com/amarbien/:splat 301!
+https://elartedeamar.eventosjv.com/* https://eventosjv.com/elartedeamar/:splat 301!
+https://amarbien.eventosjv.com/* https://eventosjv.com/elartedeamar/:splat 301!
+/amarbien/* /elartedeamar/:splat 301!
