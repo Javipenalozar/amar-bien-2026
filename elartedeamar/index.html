@@ -35,6 +35,8 @@
       --font-d:      'Cormorant Garamond', Georgia, serif;
       --font-b:      'Space Grotesk', system-ui, sans-serif;
       --radius:      4px;
+      --mx:          50%;
+      --my:          50%;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -445,7 +447,7 @@
       top: 6px;
       right: 12px;
       z-index: 3;
-      display: grid;
+      display: none;
       gap: 2px;
       text-align: center;
       color: var(--crimson);
@@ -573,16 +575,36 @@
       font-weight: 700;
       line-height: 0.96;
       margin-bottom: 20px;
-      color: var(--text);
       text-wrap: balance;
       text-shadow: 0 26px 70px rgba(20,6,42,0.14);
     }
-    .intro-h1 em {
-      font-style: italic;
+    .title-main,
+    .title-sub,
+    .title-em {
+      display: inline-block;
       color: transparent;
-      background: linear-gradient(110deg, var(--gold), var(--crimson) 78%);
       -webkit-background-clip: text;
       background-clip: text;
+    }
+    .title-main {
+      background-image:
+        radial-gradient(circle at 18% 20%, rgba(255,255,255,0.7), transparent 8%),
+        repeating-linear-gradient(105deg, rgba(20,6,42,0.92) 0 2px, rgba(20,6,42,0.7) 2px 3px, rgba(20,6,42,0.95) 3px 7px),
+        linear-gradient(135deg, #0A0412, #14062A);
+      filter: drop-shadow(0 22px 35px rgba(20,6,42,0.12));
+    }
+    .title-sub {
+      background-image:
+        repeating-linear-gradient(92deg, rgba(10,4,18,0.92) 0 3px, rgba(10,4,18,0.72) 3px 5px),
+        linear-gradient(180deg, #0A0412, #14062A);
+    }
+    .title-em {
+      font-style: italic;
+      background-image:
+        radial-gradient(circle at 18% 42%, rgba(232,168,32,0.95), transparent 18%),
+        repeating-linear-gradient(110deg, rgba(255,255,255,0.24) 0 1px, transparent 1px 5px),
+        linear-gradient(115deg, var(--gold) 0%, #D41078 68%, #6414A0 100%);
+      filter: drop-shadow(0 16px 30px rgba(212,16,120,0.18));
     }
     .intro-sub {
       font-size: clamp(1rem, 1.5vw, 1.16rem);
@@ -594,25 +616,25 @@
     .hero-path {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1px;
+      gap: 14px;
       width: min(520px, 100%);
       margin: 0 0 30px;
-      background: rgba(20,6,42,0.12);
-      border: 1px solid rgba(20,6,42,0.12);
+      background: transparent;
+      border: 0;
     }
     .path-step {
       position: relative;
-      min-height: 74px;
-      padding: 14px 14px 12px;
-      background: rgba(245,240,232,0.72);
-      backdrop-filter: blur(12px);
+      min-height: 62px;
+      padding: 13px 0 0;
+      background: transparent;
+      border-top: 1px solid rgba(20,6,42,0.18);
       overflow: hidden;
     }
     .path-step::after {
       content: attr(data-step);
       position: absolute;
       right: 10px;
-      bottom: -10px;
+      bottom: -16px;
       color: rgba(212,16,120,0.08);
       font-family: 'Bebas Neue', Impact, sans-serif;
       font-size: 3.4rem;
@@ -871,16 +893,35 @@
     }
     .evento-grid {
       display: grid;
-      grid-template-columns: 1fr 380px;
+      grid-template-columns: minmax(0, 1fr) minmax(360px, 0.74fr);
       gap: 80px; align-items: start;
     }
     .event-panel {
-      border: 1px solid rgba(20,6,42,0.12);
-      background:
-        linear-gradient(135deg, rgba(255,255,255,0.6), rgba(255,255,255,0.3)),
-        rgba(245,240,232,0.8);
-      padding: 34px;
-      box-shadow: 0 28px 100px rgba(20,6,42,0.1);
+      position: relative;
+      padding: 10px 0 10px 32px;
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+    }
+    .event-panel::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 6px;
+      bottom: 6px;
+      width: 2px;
+      background: linear-gradient(180deg, var(--crimson), var(--gold), transparent);
+    }
+    .event-panel::after {
+      content: '';
+      position: absolute;
+      left: -9px;
+      top: 30px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--crimson);
+      box-shadow: 0 0 0 10px rgba(212,16,120,0.1), 0 0 30px rgba(212,16,120,0.28);
     }
     .evento-meta { display: flex; gap: 40px; margin-bottom: 32px; flex-wrap: wrap; }
     .evento-meta-item { display: flex; flex-direction: column; gap: 4px; }
@@ -906,29 +947,65 @@
       font-size: 0.45rem; margin-top: 7px; flex-shrink: 0;
     }
     .event-visual-card {
-      min-height: 520px;
-      border: 1px solid rgba(20,6,42,0.12);
-      background:
-        radial-gradient(circle at 28% 24%, rgba(212,16,120,0.12), transparent 30%),
-        radial-gradient(circle at 78% 80%, rgba(232,168,32,0.16), transparent 32%),
-        #F5F0E8;
-      padding: 42px 34px;
+      position: relative;
+      min-height: 500px;
+      border: 0;
+      background: transparent;
+      padding: 34px 0 18px 18px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      box-shadow: 0 30px 90px rgba(20,6,42,0.1);
+      box-shadow: none;
+      isolation: isolate;
+      overflow: visible;
+    }
+    .event-visual-card::before {
+      content: '';
+      position: absolute;
+      width: min(440px, 86%);
+      aspect-ratio: 1;
+      right: 0;
+      top: 6%;
+      z-index: -1;
+      border-radius: 999px;
+      background:
+        radial-gradient(circle at var(--mx) var(--my), rgba(245,240,232,0.72), transparent 20%),
+        radial-gradient(circle at 62% 42%, rgba(212,16,120,0.18), transparent 36%),
+        radial-gradient(circle at 28% 78%, rgba(232,168,32,0.18), transparent 38%),
+        linear-gradient(rgba(20,6,42,0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(20,6,42,0.08) 1px, transparent 1px);
+      background-size: 34px 34px;
+      mask-image: radial-gradient(circle at center, black, transparent 70%);
+      opacity: 0.8;
+    }
+    .event-visual-card::after {
+      content: '';
+      position: absolute;
+      left: -2%;
+      right: 8%;
+      top: 58%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212,16,120,0.36), rgba(232,168,32,0.34), transparent);
+      transform: rotate(-12deg);
     }
     .event-visual-title {
       font-family: 'Bebas Neue', Impact, sans-serif;
-      color: var(--crimson);
-      font-size: clamp(4rem, 9vw, 7rem);
+      color: transparent;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.32), transparent 38%),
+        linear-gradient(105deg, var(--crimson) 0%, var(--violet) 78%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      font-size: clamp(4.4rem, 7.3vw, 6.7rem);
       line-height: 0.84;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.025em;
       text-transform: uppercase;
+      max-width: 100%;
+      filter: drop-shadow(0 18px 28px rgba(20,6,42,0.1));
     }
     .event-visual-title span {
       display: block;
-      color: var(--violet);
+      color: transparent;
     }
     .event-axis-list {
       list-style: none;
@@ -942,7 +1019,7 @@
       justify-content: space-between;
       gap: 18px;
       padding-bottom: 12px;
-      border-bottom: 1px solid rgba(20,6,42,0.1);
+      border-bottom: 1px solid rgba(20,6,42,0.16);
       color: var(--text);
       font-size: 0.74rem;
       font-weight: 700;
@@ -961,7 +1038,7 @@
       color: var(--muted);
       font-size: 0.82rem;
       line-height: 1.7;
-      max-width: 260px;
+      max-width: 360px;
     }
 
     /* ─── ORGANIZADOR ────────────────────────────────────── */
@@ -1071,43 +1148,136 @@
     /* ─── PRECIO ─────────────────────────────────────────── */
     #precio {
       background:
-        radial-gradient(ellipse at 50% 0%, rgba(212,16,120,0.08) 0%, transparent 55%),
-        radial-gradient(ellipse at 20% 100%, rgba(232,168,32,0.12) 0%, transparent 45%),
-        radial-gradient(ellipse at 80% 100%, rgba(100,20,160,0.06) 0%, transparent 40%),
+        radial-gradient(circle at 20% 18%, rgba(212,16,120,0.07), transparent 26%),
+        radial-gradient(circle at 78% 78%, rgba(232,168,32,0.1), transparent 30%),
         #F5F0E8;
-      text-align: center;
+      text-align: left;
     }
     .precio-shell {
-      max-width: 720px;
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(300px, 0.78fr) minmax(360px, 1fr);
+      align-items: center;
+      gap: clamp(34px, 6vw, 78px);
+      max-width: 1120px;
       margin: 0 auto;
-      border: 1px solid rgba(20,6,42,0.12);
-      background:
-        linear-gradient(135deg, rgba(255,255,255,0.7), rgba(255,255,255,0.4)),
-        rgba(245,240,232,0.92);
-      padding: clamp(34px, 6vw, 58px);
-      box-shadow: 0 34px 120px rgba(20,6,42,0.1);
+      border-top: 1px solid rgba(20,6,42,0.14);
+      border-bottom: 1px solid rgba(20,6,42,0.14);
+      background: transparent;
+      padding: clamp(38px, 5vw, 62px) 0;
+      box-shadow: none;
+      isolation: isolate;
+    }
+    .precio-shell::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: -1px;
+      width: 38%;
+      height: 2px;
+      z-index: -1;
+      background: linear-gradient(90deg, var(--crimson), var(--gold));
+      opacity: 1;
+    }
+    .precio-shell::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      bottom: -1px;
+      z-index: -1;
+      width: 44%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--violet));
+    }
+    .precio-copy {
+      position: relative;
+      padding-left: 28px;
+    }
+    .precio-copy::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: linear-gradient(180deg, var(--crimson), var(--gold));
+    }
+    .precio-copy .s-eyebrow,
+    .precio-copy .s-title {
+      text-align: left;
+    }
+    .precio-copy .s-title {
+      max-width: 440px;
+      margin-bottom: 18px;
+      font-size: clamp(2rem, 4vw, 3rem);
+    }
+    .precio-copy-text {
+      max-width: 430px;
+      color: var(--muted);
+      font-size: 0.98rem;
+      line-height: 1.85;
+    }
+    .precio-detail {
+      position: relative;
+      padding: 0;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      column-gap: 28px;
+      row-gap: 18px;
+      align-items: end;
     }
     .precio-badge {
-      display: inline-block; padding: 5px 16px;
-      background: var(--gradient); color: white;
+      display: inline-block;
+      padding: 0 0 10px;
+      border-bottom: 1px solid rgba(212,16,120,0.32);
+      color: var(--crimson);
       font-size: 0.62rem; font-weight: 700;
       letter-spacing: 0.2em; text-transform: uppercase;
-      margin-bottom: 32px;
+      margin-bottom: 0;
+      grid-column: 1 / -1;
     }
     .precio-main {
-      font-family: var(--font-d);
-      font-size: clamp(3.2rem, 9vw, 6rem);
-      font-weight: 700; color: var(--gold);
-      line-height: 1; margin-bottom: 8px;
+      font-family: 'Bebas Neue', Impact, sans-serif;
+      font-size: clamp(5.4rem, 9vw, 7.4rem);
+      font-weight: 700;
+      color: transparent;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.38), transparent 36%),
+        repeating-linear-gradient(90deg, rgba(255,255,255,0.18) 0 1px, transparent 1px 8px),
+        linear-gradient(100deg, var(--gold) 0%, var(--crimson) 42%, var(--violet) 76%, var(--deep, #14062A) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      line-height: 0.82;
+      letter-spacing: 0.01em;
+      margin-bottom: 0;
+      filter: drop-shadow(0 14px 22px rgba(20,6,42,0.11));
+      grid-column: 1 / -1;
     }
     .precio-tachado {
-      font-size: 1rem; color: var(--subtle);
-      text-decoration: line-through; margin-bottom: 36px;
+      position: relative;
+      display: inline-block;
+      color: rgba(20,6,42,0.5);
+      font-size: 0.96rem;
+      margin-bottom: 0;
+      grid-column: 1 / -1;
     }
-    .cupos-wrap { max-width: 340px; margin: 0 auto 40px; }
+    .precio-tachado::after {
+      content: '';
+      position: absolute;
+      left: -4%;
+      right: -4%;
+      top: 54%;
+      height: 1px;
+      background: rgba(20,6,42,0.32);
+      transform: rotate(-2deg);
+    }
+    .cupos-wrap {
+      width: min(100%, 390px);
+      margin: 0;
+    }
     .cupos-track {
       width: 100%; height: 3px;
-      background: var(--bg-raised); border-radius: 2px;
+      background: rgba(20,6,42,0.1); border-radius: 2px;
       overflow: hidden; margin-bottom: 10px;
     }
     .cupos-fill {
@@ -1115,6 +1285,10 @@
     }
     .cupos-label { font-size: 0.8rem; color: var(--muted); }
     .cupos-label strong { color: var(--text); }
+    .precio-detail .btn-primary {
+      min-width: 220px;
+      padding-inline: 22px;
+    }
 
     /* ─── REGISTRO ───────────────────────────────────────── */
     #registro {
@@ -1224,7 +1398,7 @@
       .hero-status { gap: 8px; margin-bottom: 16px; }
       .status-pill { padding: 7px 9px; font-size: 0.58rem; letter-spacing: 0.1em; }
       .hero-path { margin-bottom: 24px; }
-      .path-step { min-height: 68px; padding: 12px 10px; }
+      .path-step { min-height: 58px; padding: 12px 0 0; }
       .path-step span { font-size: 0.9rem; }
       .intro-actions { align-items: stretch; }
       .intro-actions .btn-primary,
@@ -1248,30 +1422,7 @@
       .node-2 { right: 0; top: 23%; }
       .node-3 { left: 3%; bottom: 16%; }
       .node-4 { right: 2%; bottom: 12%; }
-      .hero-date-tile {
-        top: 0;
-        left: 50%;
-        right: auto;
-        transform: translateX(-50%);
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 8px 12px;
-        border: 1px solid rgba(20,6,42,0.12);
-        background: rgba(245,240,232,0.82);
-        backdrop-filter: blur(12px);
-        color: var(--crimson);
-        font-family: var(--font-b);
-        font-size: 0.64rem;
-        font-weight: 800;
-        line-height: 1;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-      }
-      .hero-date-tile span:nth-child(2) {
-        color: var(--gold);
-        font-size: 1em;
-      }
+      .hero-date-tile { display: none; }
       .hero-badge-stack { right: auto; left: 16px; top: 16px; }
       .hero-badge { min-width: 118px; padding: 10px 12px; }
       .hero-badge b { font-size: 1rem; }
@@ -1279,11 +1430,66 @@
       .intro-sub { margin-bottom: 28px; }
       .heart-bg { display: none; }
       .evento-grid { grid-template-columns: 1fr; gap: 44px; }
-      .event-visual-card { order: -1; min-height: 360px; }
+      .event-visual-card {
+        order: -1;
+        min-height: 360px;
+        padding-left: 0;
+      }
+      .event-visual-card::before {
+        width: min(340px, 88%);
+        right: 3%;
+      }
+      .event-visual-title {
+        font-size: clamp(4rem, 15vw, 6rem);
+      }
       .journey-grid { grid-template-columns: 1fr; }
       .org-grid { grid-template-columns: 1fr; gap: 32px; }
       .org-foto-wrap { max-width: 220px; }
       .conf-grid { grid-template-columns: 1fr; }
+      .precio-shell {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 42px 0 48px;
+      }
+      .precio-shell::before {
+        width: 62%;
+        height: 2px;
+        mask-image: none;
+      }
+      .precio-shell::after {
+        left: auto;
+        right: 0;
+        top: auto;
+        bottom: -1px;
+        width: 58%;
+        height: 2px;
+        transform: none;
+        background: linear-gradient(90deg, var(--gold), var(--violet));
+      }
+      .precio-copy {
+        padding-left: 18px;
+      }
+      .precio-copy .s-title {
+        max-width: 360px;
+      }
+      .precio-copy-text {
+        max-width: 370px;
+      }
+      .precio-detail {
+        grid-template-columns: 1fr;
+        padding-top: 0;
+      }
+      .precio-main {
+        font-size: clamp(5rem, 21vw, 7rem);
+      }
+      .precio-badge {
+        font-size: 0.56rem;
+        letter-spacing: 0.16em;
+      }
+      .precio-detail .btn-primary {
+        width: min(100%, 360px);
+        justify-content: center;
+      }
       .f-row { grid-template-columns: 1fr; }
       .gold-rule { margin-bottom: 36px; }
     }
@@ -1301,12 +1507,11 @@
       .core-kicker::after { width: 22px; }
       .system-node { min-width: 96px; padding: 8px 9px; }
       .node-copy { font-size: 0.82rem; }
-      .hero-date-tile {
-        top: 0;
-        width: max-content;
-        max-width: calc(100vw - 48px);
-        font-size: 0.58rem;
-      }
+      .hero-date-tile { display: none; }
+      .event-visual-title { font-size: clamp(3.7rem, 17vw, 5.2rem); }
+      .precio-main { font-size: clamp(4.3rem, 20vw, 5.4rem); }
+      .precio-copy-text { font-size: 0.9rem; }
+      .cupos-label { font-size: 0.76rem; }
       .q-text { font-size: 1.28rem; }
       .q-opt { font-size: 0.86rem; padding: 13px 14px; }
     }
@@ -1365,7 +1570,10 @@
             <span class="status-pill"><strong>48</strong> cupos especiales</span>
             <span class="status-pill">$119.000</span>
           </div>
-          <h1 class="intro-h1">¿Amas...<br>o <em>temes?</em></h1>
+          <h1 class="intro-h1">
+            <span class="title-main">¿Amas...</span><br>
+            <span class="title-sub">o <span class="title-em">temes?</span></span>
+          </h1>
           <p class="intro-sub">No todo lo que duele es amor. Responde 9 preguntas y descubre si en tus relaciones domina el amor o el miedo — y qué hacer al respecto.</p>
           <div class="hero-path" aria-label="Recorrido del retiro">
             <div class="path-step" data-step="01"><b>Mirar</b><span>Tu historia vincular</span></div>
@@ -1382,7 +1590,7 @@
           <p class="intro-note">9 preguntas · menos de 3 minutos · resultado inmediato</p>
           <div class="hero-proof">
             <div class="proof-item"><b>1 día</b><span>Experiencia presencial</span></div>
-            <div class="proof-item"><b>180</b><span>Cupos disponibles</span></div>
+            <div class="proof-item"><b>48</b><span>Cupos disponibles</span></div>
             <div class="proof-item"><b>48</b><span>Cupos especiales disponibles</span></div>
           </div>
         </div>
@@ -1614,7 +1822,7 @@
             </div>
             <div class="evento-meta-item">
               <span class="em-label">Cupos</span>
-              <span class="em-val">180</span>
+              <span class="em-val">48</span>
             </div>
           </div>
           <p class="evento-body">El Arte de Amar 2026 es un retiro de 1 día diseñado para que entiendas qué mueve tus relaciones — si el amor o el miedo — y salgas con herramientas reales para elegir diferente.</p>
@@ -1712,24 +1920,28 @@
 <section id="precio" class="section">
   <div class="container">
     <div class="precio-shell">
-      <div class="s-eyebrow" style="text-align:center;color:var(--muted)">Inversión</div>
-      <h2 class="s-title" style="text-align:center">Asegura tu cupo</h2>
-      <div class="gold-rule" style="margin:0 auto 40px"></div>
-      <div class="precio-badge">Precio especial · Cupos limitados</div>
-      <div class="precio-main">$119.000</div>
-      <div class="precio-tachado">Precio regular: $299.000 COP</div>
-      <div class="cupos-wrap">
-        <div class="cupos-track">
-          <div class="cupos-fill" id="cupos-bar" style="width:0%"></div>
-        </div>
-        <div class="cupos-label">
-          <strong id="cupos-num">48</strong> cupos disponibles con precio especial
-        </div>
+      <div class="precio-copy">
+        <div class="s-eyebrow" style="color:var(--muted)">Inversión</div>
+        <h2 class="s-title">Asegura tu cupo</h2>
+        <p class="precio-copy-text">Un día presencial para mirar tu historia, ordenar tus vínculos y salir con una forma más consciente de amar. El precio especial está disponible solo para los primeros cupos.</p>
       </div>
-      <a class="btn-primary" href="#registro">
-        Quiero mi cupo
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
+      <div class="precio-detail">
+        <div class="precio-badge">Precio especial · Cupos limitados</div>
+        <div class="precio-main">$119.000</div>
+        <div class="precio-tachado">Precio regular: $299.000 COP</div>
+        <div class="cupos-wrap">
+          <div class="cupos-track">
+            <div class="cupos-fill" id="cupos-bar" style="width:0%"></div>
+          </div>
+          <div class="cupos-label">
+            <strong id="cupos-num">48</strong> cupos disponibles con precio especial
+          </div>
+        </div>
+        <a class="btn-primary" href="#registro">
+          Quiero mi cupo
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
     </div>
   </div>
 </section>
@@ -1816,6 +2028,14 @@ const PCT_VENDIDO     = ((CUPOS_VENDIDOS / CUPOS_ESPECIAL) * 100).toFixed(1);
 document.getElementById('cupos-bar-num').textContent = CUPOS_RESTANTES;
 document.getElementById('cupos-num').textContent     = CUPOS_RESTANTES;
 document.getElementById('cupos-bar').style.width     = PCT_VENDIDO + '%';
+
+/* ── CAPAS VIVAS ───────────────────────────────────────── */
+window.addEventListener('pointermove', (event) => {
+  const x = Math.round((event.clientX / window.innerWidth) * 100);
+  const y = Math.round((event.clientY / window.innerHeight) * 100);
+  document.documentElement.style.setProperty('--mx', x + '%');
+  document.documentElement.style.setProperty('--my', y + '%');
+}, { passive: true });
 
 /* ── QUIZ ──────────────────────────────────────────────── */
 const TOTAL_QUESTIONS = 9;
