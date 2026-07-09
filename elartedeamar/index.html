@@ -229,7 +229,11 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .aurora-blob { animation: none; }
+      .aurora-blob,
+      .hero-offer,
+      .hero-offer::before,
+      .hero-offer::after,
+      .hero-offer-price { animation: none; }
     }
 
     .quiz-progress {
@@ -412,36 +416,81 @@
     .system-node {
       position: absolute;
       display: grid;
-      gap: 5px;
-      padding: 12px 14px;
-      min-width: 132px;
-      border: 1px solid rgba(20,6,42,0.12);
-      background: rgba(245,240,232,0.78);
-      backdrop-filter: blur(14px);
-      box-shadow: 0 18px 46px rgba(20,6,42,0.08);
-      transition: transform 0.22s, border-color 0.22s;
+      gap: 6px;
+      min-width: 150px;
+      padding: 0 0 0 25px;
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+      transition: transform 0.22s;
+      isolation: isolate;
     }
     .system-node:hover {
-      transform: translateY(-4px);
-      border-color: rgba(212,16,120,0.38);
+      transform: translateY(-5px);
+    }
+    .system-node::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--crimson);
+      box-shadow:
+        0 0 0 8px rgba(212,16,120,0.1),
+        0 0 28px rgba(212,16,120,0.42);
+    }
+    .system-node::after {
+      content: '';
+      position: absolute;
+      left: 6px;
+      top: 14px;
+      width: 92px;
+      height: 1px;
+      z-index: -1;
+      background: linear-gradient(90deg, rgba(212,16,120,0.42), rgba(232,168,32,0.26), transparent);
+      transform-origin: left center;
     }
     .node-label {
       color: var(--crimson);
-      font-size: 0.58rem;
+      font-size: 0.56rem;
       font-weight: 800;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
     }
     .node-copy {
       color: var(--text);
       font-family: var(--font-d);
-      font-size: 1rem;
+      font-size: 1.08rem;
       line-height: 1.12;
+      text-shadow: 0 10px 26px rgba(245,240,232,0.9);
     }
-    .node-1 { left: 2%; top: 17%; }
-    .node-2 { right: 1%; top: 22%; }
-    .node-3 { left: 7%; bottom: 17%; }
-    .node-4 { right: 5%; bottom: 13%; }
+    .node-1 { left: 2%; top: 16%; }
+    .node-2 { right: -2%; top: 24%; }
+    .node-3 { left: 5%; bottom: 16%; }
+    .node-4 { right: 2%; bottom: 14%; }
+    .node-2,
+    .node-4 {
+      padding: 0 25px 0 0;
+      text-align: right;
+    }
+    .node-2::before,
+    .node-4::before {
+      left: auto;
+      right: 0;
+    }
+    .node-2::after,
+    .node-4::after {
+      left: auto;
+      right: 6px;
+      background: linear-gradient(270deg, rgba(212,16,120,0.42), rgba(232,168,32,0.26), transparent);
+      transform-origin: right center;
+    }
+    .node-1::after { transform: rotate(16deg); }
+    .node-2::after { transform: rotate(-18deg); }
+    .node-3::after { transform: rotate(-14deg); }
+    .node-4::after { transform: rotate(13deg); }
     .hero-date-tile {
       position: absolute;
       top: 6px;
@@ -611,34 +660,140 @@
       color: var(--muted);
       max-width: 460px;
       line-height: 1.75;
-      margin-bottom: 26px;
+      margin-bottom: 18px;
+    }
+    .hero-offer {
+      width: min(520px, 100%);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: end;
+      gap: 14px 22px;
+      margin: 0 0 24px;
+      padding: 15px 0 16px;
+      border-top: 1px solid rgba(212,16,120,0.28);
+      border-bottom: 1px solid rgba(20,6,42,0.14);
+      position: relative;
+      isolation: isolate;
+      transform: translate3d(0, 0, 0);
+      animation: offerFloat 6.5s ease-in-out infinite;
+    }
+    .hero-offer::before {
+      content: '';
+      position: absolute;
+      inset: -18px -26px -16px -18px;
+      z-index: -1;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 18% 48%, rgba(232,168,32,0.18), transparent 24%),
+        radial-gradient(circle at 68% 42%, rgba(212,16,120,0.15), transparent 28%),
+        radial-gradient(circle at 92% 72%, rgba(100,20,160,0.12), transparent 28%);
+      filter: blur(18px);
+      opacity: 0.72;
+      animation: offerGlow 7s ease-in-out infinite alternate;
+    }
+    .hero-offer::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -1px;
+      width: 58%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--crimson), var(--gold));
+      transform-origin: left center;
+      animation: offerLine 4.8s ease-in-out infinite;
+    }
+    .hero-offer-label {
+      grid-column: 1 / -1;
+      color: var(--crimson);
+      font-size: 0.58rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    .hero-offer-price {
+      font-family: 'Bebas Neue', Impact, sans-serif;
+      font-size: clamp(3.6rem, 6.4vw, 5.65rem);
+      line-height: 0.78;
+      letter-spacing: 0.015em;
+      color: transparent;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.42), transparent 38%),
+        repeating-linear-gradient(90deg, rgba(255,255,255,0.18) 0 1px, transparent 1px 7px),
+        linear-gradient(100deg, var(--gold) 0%, var(--crimson) 50%, var(--violet) 100%);
+      background-size: 100% 100%, 100% 100%, 180% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      filter: drop-shadow(0 12px 22px rgba(20,6,42,0.1));
+      animation: priceShine 5.8s ease-in-out infinite;
+    }
+    .hero-offer-regular {
+      position: relative;
+      color: rgba(20,6,42,0.58);
+      font-size: 0.82rem;
+      line-height: 1.35;
+      text-align: right;
+      white-space: nowrap;
+      margin-bottom: 7px;
+    }
+    .hero-offer-regular::after {
+      content: '';
+      position: absolute;
+      left: -5%;
+      right: -5%;
+      top: 50%;
+      height: 2px;
+      background: linear-gradient(90deg, rgba(212,16,120,0.52), rgba(20,6,42,0.34), rgba(232,168,32,0.42));
+      transform: rotate(-2deg);
+    }
+    .hero-offer-note {
+      grid-column: 1 / -1;
+      color: var(--muted);
+      font-size: 0.76rem;
+    }
+    .hero-offer-note strong { color: var(--text); }
+    @keyframes offerFloat {
+      0%, 100% { transform: translate3d(0, 0, 0); }
+      50% { transform: translate3d(0, -7px, 0); }
+    }
+    @keyframes offerGlow {
+      0% { opacity: 0.42; transform: translateX(-10px) scale(0.98); }
+      100% { opacity: 0.82; transform: translateX(10px) scale(1.02); }
+    }
+    @keyframes offerLine {
+      0%, 100% { transform: scaleX(0.72); opacity: 0.72; }
+      50% { transform: scaleX(1); opacity: 1; }
+    }
+    @keyframes priceShine {
+      0%, 100% { background-position: 0 0, 0 0, 0% 50%; }
+      50% { background-position: 0 0, 0 0, 100% 50%; }
     }
     .hero-path {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 14px;
       width: min(520px, 100%);
-      margin: 0 0 30px;
+      margin: 22px 0 30px;
       background: transparent;
       border: 0;
     }
     .path-step {
       position: relative;
       min-height: 62px;
-      padding: 13px 0 0;
+      padding: 13px 58px 0 0;
       background: transparent;
       border-top: 1px solid rgba(20,6,42,0.18);
-      overflow: hidden;
+      overflow: visible;
     }
     .path-step::after {
       content: attr(data-step);
       position: absolute;
-      right: 10px;
-      bottom: -16px;
-      color: rgba(212,16,120,0.08);
+      right: 0;
+      top: 11px;
+      color: rgba(212,16,120,0.2);
       font-family: 'Bebas Neue', Impact, sans-serif;
-      font-size: 3.4rem;
-      line-height: 1;
+      font-size: 2.25rem;
+      line-height: 0.9;
+      letter-spacing: 0.02em;
     }
     .path-step b {
       display: block;
@@ -1256,8 +1411,9 @@
     .precio-tachado {
       position: relative;
       display: inline-block;
-      color: rgba(20,6,42,0.5);
-      font-size: 0.96rem;
+      color: rgba(20,6,42,0.58);
+      font-size: clamp(1.02rem, 1.6vw, 1.26rem);
+      font-weight: 500;
       margin-bottom: 0;
       grid-column: 1 / -1;
     }
@@ -1267,8 +1423,8 @@
       left: -4%;
       right: -4%;
       top: 54%;
-      height: 1px;
-      background: rgba(20,6,42,0.32);
+      height: 2px;
+      background: linear-gradient(90deg, rgba(212,16,120,0.52), rgba(20,6,42,0.34), rgba(232,168,32,0.42));
       transform: rotate(-2deg);
     }
     .cupos-wrap {
@@ -1385,7 +1541,7 @@
     /* ─── MOBILE ─────────────────────────────────────────── */
     @media (max-width: 768px) {
       #quiz { min-height: auto; }
-      .quiz-stage { min-height: 1160px; }
+      .quiz-stage { min-height: 1460px; }
       .nav { padding: 14px 20px; }
       .nav-links { display: none; }
       .nav-actions { gap: 8px; }
@@ -1397,8 +1553,18 @@
       .hero-copy::before { left: -10px; }
       .hero-status { gap: 8px; margin-bottom: 16px; }
       .status-pill { padding: 7px 9px; font-size: 0.58rem; letter-spacing: 0.1em; }
+      .hero-offer {
+        gap: 10px 16px;
+        margin-bottom: 22px;
+      }
+      .hero-offer-price {
+        font-size: clamp(3.2rem, 15vw, 4.8rem);
+      }
+      .hero-offer-regular {
+        font-size: 0.76rem;
+      }
       .hero-path { margin-bottom: 24px; }
-      .path-step { min-height: 58px; padding: 12px 0 0; }
+      .path-step { min-height: 58px; padding: 12px 52px 0 0; }
       .path-step span { font-size: 0.9rem; }
       .intro-actions { align-items: stretch; }
       .intro-actions .btn-primary,
@@ -1407,21 +1573,29 @@
         justify-content: center;
       }
       .intro-note { max-width: 360px; }
-      .hero-visual { min-height: auto; justify-content: center; margin-top: 26px; }
-      .love-system { min-height: 390px; width: min(100%, 520px); }
-      .love-system::after { width: min(310px, 76vw); }
+      .hero-visual { min-height: 500px; justify-content: center; margin-top: 34px; }
+      .love-system { min-height: 500px; width: min(100%, 560px); }
+      .love-system::after { width: min(390px, 76vw); }
       .love-system::before { background-size: 36px 36px; }
-      .system-line { width: min(300px, 68vw); }
-      .system-core { top: 52%; width: min(310px, 80%); }
-      .core-title { font-size: clamp(4.8rem, 18vw, 8rem); }
+      .system-line { width: min(360px, 68vw); }
+      .system-core { top: 51%; width: min(360px, 80%); }
+      .core-title { font-size: clamp(5.4rem, 18vw, 9rem); }
       .core-sub { display: none; }
-      .system-node { min-width: 112px; padding: 9px 10px; }
+      .system-node { min-width: 112px; padding-left: 21px; }
+      .node-2,
+      .node-4 { padding: 0 21px 0 0; }
+      .system-node::before {
+        width: 10px;
+        height: 10px;
+        top: 7px;
+      }
+      .system-node::after { width: 54px; }
       .node-label { font-size: 0.5rem; }
       .node-copy { font-size: 0.88rem; }
-      .node-1 { left: 0; top: 16%; }
-      .node-2 { right: 0; top: 23%; }
-      .node-3 { left: 3%; bottom: 16%; }
-      .node-4 { right: 2%; bottom: 12%; }
+      .node-1 { left: 0; top: 12%; }
+      .node-2 { right: 0; top: 20%; }
+      .node-3 { left: 3%; bottom: 12%; }
+      .node-4 { right: 2%; bottom: 10%; }
       .hero-date-tile { display: none; }
       .hero-badge-stack { right: auto; left: 16px; top: 16px; }
       .hero-badge { min-width: 118px; padding: 10px 12px; }
@@ -1495,12 +1669,19 @@
     }
     @media (max-width: 480px) {
       .intro-h1 { font-size: 2.8rem; }
-      .quiz-stage { min-height: 1220px; }
+      .quiz-stage { min-height: 1540px; }
       .hero-path { grid-template-columns: 1fr; }
       .path-step { min-height: auto; }
-      .love-system { min-height: 360px; }
-      .love-system::after { width: min(270px, 78vw); }
-      .system-line { width: min(260px, 70vw); }
+      .hero-offer {
+        grid-template-columns: 1fr;
+      }
+      .hero-offer-regular {
+        text-align: left;
+        margin-bottom: 0;
+      }
+      .love-system { min-height: 430px; }
+      .love-system::after { width: min(310px, 78vw); }
+      .system-line { width: min(290px, 70vw); }
       .core-title { font-size: clamp(4.1rem, 21vw, 6.8rem); }
       .core-kicker { font-size: 0.58rem; gap: 7px; }
       .core-kicker::before,
@@ -1568,17 +1749,17 @@
           <div class="hero-status" aria-label="Estado del evento">
             <span class="status-pill"><span class="status-dot"></span>Retiro presencial</span>
             <span class="status-pill"><strong>48</strong> cupos especiales</span>
-            <span class="status-pill">$119.000</span>
           </div>
           <h1 class="intro-h1">
             <span class="title-main">¿Amas...</span><br>
             <span class="title-sub">o <span class="title-em">temes?</span></span>
           </h1>
           <p class="intro-sub">No todo lo que duele es amor. Responde 9 preguntas y descubre si en tus relaciones domina el amor o el miedo — y qué hacer al respecto.</p>
-          <div class="hero-path" aria-label="Recorrido del retiro">
-            <div class="path-step" data-step="01"><b>Mirar</b><span>Tu historia vincular</span></div>
-            <div class="path-step" data-step="02"><b>Ordenar</b><span>Heridas y límites</span></div>
-            <div class="path-step" data-step="03"><b>Elegir</b><span>Una forma distinta</span></div>
+          <div class="hero-offer" aria-label="Precio especial">
+            <div class="hero-offer-label">Precio especial · cupos limitados</div>
+            <div class="hero-offer-price">$119.000</div>
+            <div class="hero-offer-regular">Precio regular<br>$299.000 COP</div>
+            <div class="hero-offer-note"><strong>48 cupos</strong> disponibles con precio especial</div>
           </div>
           <div class="intro-actions">
             <button class="btn-primary" onclick="startQuiz()">
@@ -1588,6 +1769,11 @@
             <a class="btn-outline" href="#evento">Ver evento</a>
           </div>
           <p class="intro-note">9 preguntas · menos de 3 minutos · resultado inmediato</p>
+          <div class="hero-path" aria-label="Recorrido del retiro">
+            <div class="path-step" data-step="01"><b>Mirar</b><span>Tu historia vincular</span></div>
+            <div class="path-step" data-step="02"><b>Ordenar</b><span>Heridas y límites</span></div>
+            <div class="path-step" data-step="03"><b>Elegir</b><span>Una forma distinta</span></div>
+          </div>
           <div class="hero-proof">
             <div class="proof-item"><b>1 día</b><span>Experiencia presencial</span></div>
             <div class="proof-item"><b>48</b><span>Cupos disponibles</span></div>
