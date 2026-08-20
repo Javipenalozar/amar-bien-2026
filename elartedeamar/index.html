@@ -3800,6 +3800,17 @@
         border-top: 1px solid rgba(255,255,255,0.32);
         background: rgba(12,12,12,0.96);
         backdrop-filter: blur(14px);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translateY(100%);
+        transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s ease;
+      }
+      .mobile-conversion-bar.is-visible {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(0);
       }
       .quiz-running .mobile-conversion-bar { display: none; }
       .mobile-conversion-bar a {
@@ -3819,6 +3830,122 @@
       .faq-list summary { padding-block: 22px; font-size: 1rem; }
       .faq-list details p { padding-right: 0; }
       .privacy-notice { padding: 46px 0; }
+    }
+
+    /* Corrección consolidada para móviles: evita desbordes y mantiene libre el hero. */
+    @media (max-width: 760px) {
+      html, body, #quiz, .quiz-stage, .quiz-card,
+      #quiz #c-intro, #quiz #c-intro .hero-shell,
+      #quiz #c-intro .hero-copy {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+      }
+      #quiz #c-intro {
+        padding: 92px max(20px, env(safe-area-inset-right)) 58px max(20px, env(safe-area-inset-left));
+        overflow: hidden;
+      }
+      #quiz #c-intro .hero-shell {
+        min-height: 0;
+        padding: 30px 0 44px;
+        overflow: visible;
+      }
+      #quiz #c-intro .hero-copy,
+      #quiz #c-intro .intro-sub,
+      #quiz #c-intro .daily-stat,
+      #quiz #c-intro .intro-note,
+      #quiz #c-intro .quiz-disclaimer,
+      #quiz #c-intro .hero-offer,
+      #quiz #c-intro .intro-actions {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+      }
+      #quiz #c-intro .headline-impact {
+        width: 100%;
+        max-width: 100%;
+        font-size: clamp(2.85rem, 14vw, 4.2rem) !important;
+        line-height: 0.86 !important;
+        letter-spacing: -0.055em !important;
+      }
+      #quiz #c-intro .headline-impact .impact-line {
+        width: 100%;
+        max-width: 100%;
+        white-space: normal;
+      }
+      #quiz #c-intro .headline-impact .impact-small {
+        margin-top: 16px !important;
+        font-size: 0.24em !important;
+        line-height: 1.15;
+      }
+      #quiz #c-intro .intro-sub {
+        font-size: clamp(0.88rem, 4.15vw, 1rem);
+        line-height: 1.58;
+        overflow-wrap: break-word;
+      }
+      #quiz #c-intro .intro-actions-test .btn-primary,
+      #quiz #c-intro .intro-actions .btn-outline {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        justify-content: center;
+        padding: 16px 14px;
+        font-size: clamp(0.68rem, 3.15vw, 0.78rem);
+        line-height: 1.35;
+        letter-spacing: 0.035em;
+        text-align: center;
+        white-space: normal;
+        overflow-wrap: break-word;
+      }
+      #quiz #c-intro .intro-actions-test .btn-primary svg {
+        flex: 0 0 auto;
+      }
+      #quiz #c-intro .daily-stat,
+      #quiz #c-intro .quiz-disclaimer,
+      #quiz #c-intro .intro-note {
+        overflow-wrap: break-word;
+      }
+      #quiz #c-intro .hero-offer-price,
+      #quiz #c-intro .hero-offer-save,
+      #quiz #c-intro .hero-offer-regular,
+      #quiz #c-intro .hero-offer-note {
+        grid-column: 1;
+        grid-row: auto;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+      }
+      #quiz #c-intro .hero-offer-price {
+        font-size: clamp(3.35rem, 20vw, 5rem);
+        overflow-wrap: break-word;
+      }
+      #quiz #c-intro .hero-offer-regular,
+      #quiz #c-intro .hero-offer-note {
+        padding-left: 0;
+        border-left: 0;
+        white-space: normal;
+      }
+      #quiz #c-intro .hero-offer-old-price {
+        max-width: 100%;
+        font-size: 0.92em;
+        white-space: normal;
+      }
+      #quiz #c-intro .hero-offer-old-price::after {
+        left: 0;
+        right: 0;
+      }
+    }
+
+    @media (max-width: 360px) {
+      #quiz #c-intro {
+        padding-inline: max(16px, env(safe-area-inset-left));
+      }
+      #quiz #c-intro .headline-impact {
+        font-size: clamp(2.55rem, 13.7vw, 3.1rem) !important;
+      }
+      .nav { padding-inline: 12px; }
+      .nav-logo { max-width: 48%; font-size: 0.82rem; overflow: hidden; text-overflow: ellipsis; }
+      .nav-btn { padding-inline: 10px; letter-spacing: 0.08em; }
     }
 
   </style>
@@ -4481,6 +4608,15 @@ if (dailyStat) {
   const now = new Date();
   const hoursElapsed = now.getHours() + (now.getMinutes() / 60);
   dailyStat.textContent = Math.floor(hoursElapsed * 4).toLocaleString('es-CO');
+}
+
+const mobileConversionBar = document.querySelector('.mobile-conversion-bar');
+const heroIntro = document.getElementById('c-intro');
+if (mobileConversionBar && heroIntro && 'IntersectionObserver' in window) {
+  const mobileBarObserver = new IntersectionObserver(([entry]) => {
+    mobileConversionBar.classList.toggle('is-visible', !entry.isIntersecting);
+  }, { threshold: 0.04 });
+  mobileBarObserver.observe(heroIntro);
 }
 
 const creatorReduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
